@@ -1,0 +1,13 @@
+gui:
+  theme:
+    # Comment these if you don't want transparent bg
+    selectedLineBgColor:
+      - "#0d0a0a"
+      - bold
+
+os:
+  edit: "zeditor {{{filename}}}"
+  editAtLine: "zeditor {{{filename}}}:{{{line}}}"
+  editAtLineAndWait: "zeditor --wait {{{filename}}}:{{{line}}}"
+  openDirInEditor: "zeditor {{{dir}}}"
+  editInTerminal: true
