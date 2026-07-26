@@ -1,0 +1,80 @@
+area:desktop:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".config/hypr/**"
+          - ".config/waybar/**"
+          - ".config/rofi/**"
+          - ".config/swaync/**"
+          - ".config/hypridle/**"
+          - ".config/hyprlock/**"
+
+area:terminal:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".config/kitty/**"
+
+area:shell:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".config/starship.toml"
+
+area:cli:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".config/bat/**"
+          - ".config/fastfetch/**"
+          - ".config/dgop/**"
+          - ".config/yazi/**"
+          - ".config/lazygit/**"
+
+area:editor:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".config/zed/**"
+
+area:media:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".config/mpv/**"
+          - ".config/spicetify/**"
+
+area:theme:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".config/wal/**"
+          - "themes/**"
+
+area:login:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "themes/sddm/**"
+
+area:system:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".config/mimeapps.list"
+          - ".config/fontconfig/**"
+
+area:github:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+
+area:git:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".gitconfig"
+          - ".gitignore"
+          - ".gitattributes"
+          - ".config/git/**"
+
+area:scripts:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "scripts/**"
+
+area:docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "README.md"
+          - "docs/**"
