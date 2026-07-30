@@ -1,0 +1,15 @@
+{
+  "network": {
+    "interface": "enp2s0", // Change with your interface
+    "format": "{ifname}",
+    "format-wifi": "{essid} ",
+    "format-ethernet": "{ifname} 󰈀",
+    "format-disconnected": "", // An empty format will hide the module.
+    "tooltip-format": "{ifname} via {gwaddr} 󰈀",
+    "tooltip-format-wifi": "{essid} ",
+    "tooltip-format-ethernet": "Ethernet: {ipaddr}/{cidr} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "kitty sh -c 'impala; exec $SHELL'",
+    "max-length": 20,
+  },
+}

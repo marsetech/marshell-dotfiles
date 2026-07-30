@@ -2,6 +2,10 @@
   "position": "top",
   "margin-top": 6,
   "margin-bottom": 3,
+  "include": [
+    "$HOME/.config/waybar/modules/*.jsonc",
+    "$HOME/.config/waybar/modules/**/*.jsonc",
+  ],
   "modules-left": ["clock", "mpris"],
   "modules-center": ["hyprland/workspaces"],
   "modules-right": [
@@ -10,110 +14,4 @@
     "network",
     "custom/notification",
   ],
-
-  // ──── Left modules ─────────────────────────────────────────────────
-  "clock": {
-    "interval": 60,
-    "tooltip": true,
-    "format": "{:%H.%M}",
-    "tooltip-format": "{:%Y-%m-%d}",
-  },
-  "mpris": {
-    "format": "{status_icon} {title}",
-    "format-paused": "{status_icon} {title}",
-    "tooltip-format": "{status_icon} {player} - {title}・{artist}",
-    "status-icons": {
-      "default": "▶",
-      "mpv": "",
-      "spotify": "",
-      "paused": "",
-    },
-    "max-length": 30,
-    "on-click-left": "playerctl play-pause",
-    "on-scroll-up": "playerctl previous",
-    "on-scroll-down": "playerctl next",
-    "ignored-players": ["chromium", "firefox"],
-  },
-
-  // ──── Center modules ─────────────────────────────────────────────────
-  "hyprland/workspaces": {
-    "all-outputs": true,
-    "on-click": "activate",
-    "active-only": false,
-    "on-scroll-down": "hyprctl dispatch \"hl.dsp.focus({workspace = 'e+1'})\"",
-    "on-scroll-up": "hyprctl dispatch \"hl.dsp.focus({workspace = 'e-1'})\"",
-    "format": "{icon}",
-    "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-    },
-    "sort-by-number": true,
-    "persistent-workspaces": {
-      "*": [1, 2, 3, 4, 5],
-    },
-  },
-
-  // ──── Right modules ─────────────────────────────────────────────────
-  "custom/updates": {
-    "format": " {}",
-    "tooltip-format": "{} updates available",
-    "interval": 60,
-    "exec": "~/.config/waybar/scripts/updates-counter.sh",
-    "on-click": "kitty sh -c 'paru -Syyu && flatpak update; exec $SHELL'",
-  },
-  "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-bluetooth": "{volume}% {icon} ",
-    "format-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "phone-muted": "",
-      "portable": "",
-      "car": "",
-      "default": ["", ""],
-    },
-    "scroll-step": 5,
-    "on-click": "pavucontrol",
-    "on-click-right": "blueman-manager",
-    "ignored-sinks": ["Easy Effects Sink"],
-  },
-  "network": {
-    "interface": "enp2s0", // Change with your interface
-    "format": "{ifname}",
-    "format-wifi": "{essid} ",
-    "format-ethernet": "{ifname} 󰈀",
-    "format-disconnected": "", // An empty format will hide the module.
-    "tooltip-format": "{ifname} via {gwaddr} 󰈀",
-    "tooltip-format-wifi": "{essid} ",
-    "tooltip-format-ethernet": "Ethernet: {ipaddr}/{cidr} ",
-    "tooltip-format-disconnected": "Disconnected",
-    "on-click": "kitty sh -c 'impala; exec $SHELL'",
-    "max-length": 20,
-  },
-  "custom/notification": {
-    "tooltip": true,
-    "format": "<span size='10pt'>{icon}</span>",
-    "format-icons": {
-      "notification": "󱅫",
-      "none": "",
-      "dnd-notification": "󰂠",
-      "dnd-none": "󰪓",
-      "inhibited-notification": "󰂛",
-      "inhibited-none": "󰪑",
-      "dnd-inhibited-notification": "󰂛",
-      "dnd-inhibited-none": "󰪑",
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true,
-  },
 }
