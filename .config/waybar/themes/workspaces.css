@@ -1,0 +1,47 @@
+/*
+NOTE: Keep this rule in mind!
+  - 2 values: top/bottom・left/right
+  - 4 values: top・right・bottom・left
+*/
+#workspaces {
+  background-color: @background;
+  color: @foreground;
+  padding: 6px 3px;
+  margin: 0px 0px 0px 12px;
+  border: 1px solid @color2;
+  /*border-radius: 18px;*/
+}
+
+#workspaces button {
+  padding: 0px 6px;
+  margin: 0px 3px;
+  /*border-radius: 50px;*/
+  color: transparent;
+  background-color: alpha(@color2, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.active {
+  background-color: @color2;
+  color: @background;
+  min-width: 50px;
+  transition: all 0.2s ease-in-out;
+  font-size: 20px;
+}
+
+#workspaces button:hover {
+  color: @background;
+  background-color: @color1;
+  min-width: 50px;
+  /*border-radius: 16px;*/
+  background-size: 400% 400%;
+}
+
+#workspaces button.urgent {
+  background-color: @color4;
+  color: @background;
+  min-width: 50px;
+  /*border-radius: 16px;*/
+  background-size: 400% 400%;
+  transition: all 0.2s ease-in-out;
+}

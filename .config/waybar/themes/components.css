@@ -1,0 +1,17 @@
+#pulseaudio,
+#network,
+#clock,
+#tray,
+#mpris,
+#custom-notification,
+#custom-updates {
+  background-color: @background;
+  padding: 0 15px;
+  margin: 0 0 0 6px;
+  border: 1px solid @color2;
+  /*border-radius: 50px;*/
+}
+
+#custom-notification {
+  margin: 0 6px;
+}
