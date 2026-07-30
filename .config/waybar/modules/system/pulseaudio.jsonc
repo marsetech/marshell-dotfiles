@@ -1,0 +1,21 @@
+{
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon} ",
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "phone-muted": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""],
+    },
+    "scroll-step": 5,
+    "on-click": "pavucontrol",
+    "on-click-right": "blueman-manager",
+    "ignored-sinks": ["Easy Effects Sink"],
+  },
+}

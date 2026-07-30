@@ -1,0 +1,18 @@
+{
+  "mpris": {
+    "format": "{status_icon} {title}",
+    "format-paused": "{status_icon} {title}",
+    "tooltip-format": "{status_icon} {player} - {title}・{artist}",
+    "status-icons": {
+      "default": "▶",
+      "mpv": "",
+      "spotify": "",
+      "paused": "",
+    },
+    "max-length": 30,
+    "on-click-left": "playerctl play-pause",
+    "on-scroll-up": "playerctl previous",
+    "on-scroll-down": "playerctl next",
+    "ignored-players": ["chromium", "firefox"],
+  },
+}

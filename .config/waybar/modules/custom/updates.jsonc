@@ -1,0 +1,9 @@
+{
+  "custom/updates": {
+    "format": " {}",
+    "tooltip-format": "{} updates available",
+    "interval": 60,
+    "exec": "~/.config/waybar/scripts/updates-counter.sh",
+    "on-click": "kitty sh -c 'paru -Syyu && flatpak update; exec $SHELL'",
+  },
+}
