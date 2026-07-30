@@ -1,0 +1,29 @@
+.widget-buttons-grid {
+    font-size: x-large;
+    padding: 5px;
+    margin: 5px 10px 10px 10px;
+    border-radius: 5px;
+    background: @background;
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button {
+    margin: 3px;
+    background: @background;
+    border-radius: 5px;
+    color: @foreground;
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button:hover {
+    background: @color2;
+    color: @background;
+}
+
+.widget-menubar>box>.menu-button-bar>button {
+    border: none;
+    background: transparent
+}
+
+.topbar-buttons>button {
+    border: none;
+    background: transparent
+}

@@ -1,0 +1,75 @@
+.notification-row {
+  outline: none;
+  margin: 0px;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.notification {
+  outline: none;
+  padding: 0;
+  background: transparent;
+  margin-top: -6px;
+  margin-right: -12px;
+  border: none;
+  box-shadow: none;
+}
+
+.notification-content {
+  background: @background;
+  padding: 7px;
+  border-radius: 0px;
+  border: 2px solid @color2;
+  margin: 0;
+  box-shadow: none;
+  outline: none;
+}
+
+/*.notification:hover,
+.notification-content:hover,
+.notification-action:hover {
+  outline: none;
+  border-radius: 0px;
+  border: 0px;
+
+}*/
+
+.notification-action {
+  color: @foreground;
+  border: 2px solid @color2;
+  border-top: none;
+  border-radius: 0px;
+  background: @color1;
+  box-shadow: none;
+  outline: none;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+  color: @foreground;
+  background: @background;
+  border: none;
+}
+
+.floating-notifications {
+  background: transparent;
+}
+
+.notification-group {
+  background: transparent;
+  border: none;
+}
+
+.notification-group .notification-content {
+  background: alpha(@color2, 0.1);
+  padding: 7px;
+  border-radius: 0px;
+  border: 2px solid @color2;
+  margin: 0;
+}
+
+.notification-group-headers {
+  background: transparent;
+  border: none;
+}

@@ -1,0 +1,27 @@
+.widget-volume {
+  color: @foreground;
+  margin: 6px
+}
+
+.widget-volume scale {
+    min-height: 6px;
+}
+
+.widget-volume scale trough {
+    background: alpha(@color2, 0.1);
+    border-radius: 999px;
+    min-height: 6px;
+}
+
+.widget-volume scale highlight {
+    background: @color2;
+    border-radius: 999px;
+}
+
+.widget-volume scale slider {
+    background: @color2;
+    border-radius: 999px;
+    min-width: 14px;
+    min-height: 14px;
+    margin: -4px;
+}
