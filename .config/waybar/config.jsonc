@@ -93,6 +93,7 @@
     "tooltip-format-wifi": "{essid} ",
     "tooltip-format-ethernet": "Ethernet: {ipaddr}/{cidr} ",
     "tooltip-format-disconnected": "Disconnected",
+    "on-click": "kitty sh -c 'impala; exec $SHELL'",
     "max-length": 20,
   },
   "custom/notification": {
