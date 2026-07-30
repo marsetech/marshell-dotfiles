@@ -4,7 +4,12 @@
   "margin-bottom": 3,
   "modules-left": ["clock", "mpris"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["pulseaudio", "network", "custom/notification"],
+  "modules-right": [
+    "custom/updates",
+    "pulseaudio",
+    "network",
+    "custom/notification",
+  ],
 
   // ──── Left modules ─────────────────────────────────────────────────
   "clock": {
@@ -52,6 +57,13 @@
   },
 
   // ──── Right modules ─────────────────────────────────────────────────
+  "custom/updates": {
+    "format": " {}",
+    "tooltip-format": "{} updates available",
+    "interval": 60,
+    "exec": "~/.config/waybar/scripts/updates-counter.sh",
+    "on-click": "kitty sh -c 'paru -Syyu && flatpak update; exec $SHELL'",
+  },
   "pulseaudio": {
     "format": "{volume}% {icon}",
     "format-bluetooth": "{volume}% {icon} ",
