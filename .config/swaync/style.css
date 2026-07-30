@@ -1,0 +1,299 @@
+@import "../../../.cache/wal/colors-waybar.css";
+
+* {
+  font-family: "CaskaydiaCove Nerd Font", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.close-button {
+  background: @color2;
+  color: alpha(@color2, 0.1);
+  text-shadow: none;
+  padding: 0;
+  border-radius: 0px;
+  margin: 0px;
+  margin-right: -8px;
+}
+
+.close-button:hover {
+  box-shadow: none;
+  background: @color2;
+  transition: all 0.15s ease-in-out;
+  border: none;
+}
+
+.summary {
+  padding-top: 7px;
+  font-size: 13px;
+  color: @foreground;
+}
+
+.time {
+  font-size: 11px;
+  color: @color2;
+  margin-right: 24px;
+}
+
+.body {
+  font-size: 12px;
+  color: @foreground;
+}
+
+.blank-window {
+  /*background: alpha(@background, 0.1);*/
+  background: transparent;
+  animation: fade 0.4 linear;
+}
+
+.widget-label {
+  margin: 10px 10px 5px 10px;
+}
+
+.widget-label > label {
+  font-size: 1rem;
+  color: @foreground;
+}
+
+/* ──── notifications ─────────────────────────────────────────────────*/
+.notification-row {
+  outline: none;
+  margin: 0px;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.notification {
+  outline: none;
+  padding: 0;
+  background: transparent;
+  margin-top: -6px;
+  margin-right: -12px;
+  border: none;
+  box-shadow: none;
+}
+
+.notification-content {
+  background: @background;
+  padding: 7px;
+  border-radius: 0px;
+  border: 2px solid @color2;
+  margin: 0;
+  box-shadow: none;
+  outline: none;
+}
+
+/*.notification:hover,
+.notification-content:hover,
+.notification-action:hover {
+  outline: none;
+  border-radius: 0px;
+  border: 0px;
+}*/
+
+.notification-action {
+  color: @foreground;
+  border: 2px solid @color2;
+  border-top: none;
+  border-radius: 0px;
+  background: @color1;
+  box-shadow: none;
+  outline: none;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+  color: @foreground;
+  background: @background;
+  border: none;
+}
+
+.floating-notifications {
+  background: transparent;
+}
+
+.notification-group {
+  background: transparent;
+  border: none;
+}
+
+.notification-group .notification-content {
+  background: alpha(@color2, 0.1);
+  padding: 7px;
+  border-radius: 0px;
+  border: 2px solid @color2;
+  margin: 0;
+}
+
+.notification-group-headers {
+  background: transparent;
+  border: none;
+}
+
+/* ──── control-center ─────────────────────────────────────────────────*/
+.control-center {
+  background: @background;
+  border: 2px solid @color2;
+  border-radius: 0px;
+}
+
+.control-center-list {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.control-center-list-placeholder {
+  opacity: 0.5;
+}
+
+.control-center .notification-row:focus,
+.control-center .notification-row:hover {
+  opacity: 1;
+  background: @background;
+  border: none;
+  box-shadow: none;
+}
+
+/* ──── buttons grid ─────────────────────────────────────────────────*/
+.widget-buttons-grid {
+  font-size: x-large;
+  padding: 5px;
+  margin: 5px 10px 10px 10px;
+  border-radius: 5px;
+  background: @background;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  margin: 3px;
+  background: @background;
+  border-radius: 5px;
+  color: @foreground;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: @color2;
+  color: @background;
+}
+
+.widget-menubar > box > .menu-button-bar > button {
+  border: none;
+  background: transparent;
+}
+
+.topbar-buttons > button {
+  border: none;
+  background: transparent;
+}
+
+/* ──── dnd ─────────────────────────────────────────────────*/
+.widget-dnd {
+  background: @background;
+  padding: 5px 10px;
+  margin: 5px 10px 10px 10px;
+  border-radius: 5px;
+  font-size: large;
+  color: @color1;
+}
+
+.widget-dnd > switch {
+  border-radius: 4px;
+  background: alpha(@color2, 0.1);
+  border: 1px solid transparent;
+}
+
+.widget-dnd > switch:checked {
+  background: alpha(@color2, 0.6);
+  border: 1px solid transparent;
+}
+
+.widget-dnd > switch slider {
+  background: alpha(@color2, 0.5);
+  border-radius: 5px;
+}
+
+.widget-dnd > switch:checked slider {
+  background: @color2;
+  border-radius: 5px;
+}
+
+/* ──── mpris ─────────────────────────────────────────────────*/
+.widget-mpris {
+  color: @foreground;
+  background: @background;
+  padding: 5px 10px 0px 0px;
+  margin: 5px 10px 5px 10px;
+  border-radius: 0px;
+}
+
+.widget-mpris > box > button {
+  border-radius: 5px;
+}
+
+.widget-mpris-player {
+  padding: 5px 10px;
+  margin: 10px;
+}
+
+.widget-mpris-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.widget-mpris-subtitle {
+  font-size: 1.1rem;
+}
+
+/* ──── title ─────────────────────────────────────────────────*/
+.widget-title {
+  color: @color2;
+  background: @background;
+  padding: 5px 10px;
+  margin: 10px 10px 5px 10px;
+  font-size: 2.8rem;
+  border-radius: 5px;
+}
+
+.widget-title > button {
+  font-size: 1rem;
+  color: @foreground;
+  text-shadow: none;
+  background: @background;
+  box-shadow: none;
+  border-radius: 5px;
+}
+
+.widget-title > button:hover {
+  background: @color2;
+  color: @background;
+}
+
+/* ──── buttons grid ─────────────────────────────────────────────────*/
+.widget-volume {
+  color: @foreground;
+  margin: 6px;
+}
+
+.widget-volume scale {
+  min-height: 6px;
+}
+
+.widget-volume scale trough {
+  background: alpha(@color2, 0.1);
+  border-radius: 999px;
+  min-height: 6px;
+}
+
+.widget-volume scale highlight {
+  background: @color2;
+  border-radius: 999px;
+}
+
+.widget-volume scale slider {
+  background: @color2;
+  border-radius: 999px;
+  min-width: 14px;
+  min-height: 14px;
+  margin: -4px;
+}
