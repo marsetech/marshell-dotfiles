@@ -1,0 +1,22 @@
+.widget-title {
+    color: @color2;
+    background: @background;
+    padding: 5px 10px;
+    margin: 10px 10px 5px 10px;
+    font-size: 2.8rem;
+    border-radius: 5px;
+}
+
+.widget-title>button {
+    font-size: 1rem;
+    color: @foreground;
+    text-shadow: none;
+    background: @background;
+    box-shadow: none;
+    border-radius: 5px;
+}
+
+.widget-title>button:hover {
+    background: @color2;
+    color: @background;
+}

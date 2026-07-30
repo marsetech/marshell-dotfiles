@@ -1,0 +1,23 @@
+.control-center {
+  background: @background;
+  border: 2px solid @color2;
+  border-radius: 0px;
+}
+
+.control-center-list {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.control-center-list-placeholder {
+  opacity: 0.5;
+}
+
+.control-center .notification-row:focus,
+.control-center .notification-row:hover {
+  opacity: 1;
+  background: @background;
+  border: none;
+  box-shadow: none;
+}

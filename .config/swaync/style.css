@@ -1,0 +1,9 @@
+@import "themes/main.css";
+@import "themes/notifications.css";
+@import "themes/control-center.css";
+
+@import "themes/widgets/button-grid.css";
+@import "themes/widgets/dnd.css";
+@import "themes/widgets/mpris.css";
+@import "themes/widgets/title.css";
+@import "themes/widgets/volume.css";

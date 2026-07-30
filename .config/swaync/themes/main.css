@@ -1,0 +1,56 @@
+@import "../../../.cache/wal/colors-waybar.css";
+
+* {
+  font-family: "CaskaydiaCove Nerd Font", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.close-button {
+  background: @color2;
+  color: alpha(@color2, 0.1);
+  text-shadow: none;
+  padding: 0;
+  border-radius: 0px;
+  margin: 0px;
+  margin-right: -8px;
+}
+
+.close-button:hover {
+  box-shadow: none;
+  background: @color2;
+  transition: all 0.15s ease-in-out;
+  border: none;
+}
+
+.summary {
+  padding-top: 7px;
+  font-size: 13px;
+  color: @foreground;
+}
+
+.time {
+  font-size: 11px;
+  color: @color2;
+  margin-right: 24px;
+}
+
+.body {
+  font-size: 12px;
+  color: @foreground;
+}
+
+.blank-window {
+  /*background: alpha(@background, 0.1);*/
+  background: transparent;
+  animation: fade 0.4 linear;
+}
+
+.widget-label {
+  margin: 10px 10px 5px 10px;
+}
+
+.widget-label > label {
+  font-size: 1rem;
+  color: @foreground;
+}
