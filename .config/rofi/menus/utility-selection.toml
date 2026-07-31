@@ -5,3 +5,8 @@ title = "Utility Selector"
 label = "Emoticon"
 icon  = ""
 exec  = "bash $HOME/.config/rofi/modules/emoji-selector/main.sh"
+
+[[item]]
+label = "Clipboard Manager"
+icon  = ""
+exec  = "bash $HOME/.config/rofi/modules/clipboard-manager/main.sh"

@@ -1,0 +1,18 @@
+/*****
+──── Message ─────────────────────────────────────────────────
+*****/
+error-message {
+    padding:                     20px;
+    border:                      2px solid;
+    border-radius:               20px;
+    border-color:                @active-background;
+    background-color:            @background;
+    text-color:                  @foreground;
+}
+textbox {
+    background-color:            @background;
+    text-color:                  @foreground;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+    highlight:                   none;
+}
