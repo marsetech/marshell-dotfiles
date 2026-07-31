@@ -27,6 +27,11 @@ icon  = ""
 exec  = "bash $HOME/.config/rofi/modules/colors-picker/main.sh"
 
 [[item]]
+label = "Wallpaper Switcher"
+icon  = "󰸉"
+exec  = "bash $HOME/.config/rofi/modules/wallpaper-switcher/main.sh"
+
+[[item]]
 label = "Internet"
 icon  = "󰖩"
 exec  = "bash $HOME/.config/rofi/modules/network-controller/main.sh"
