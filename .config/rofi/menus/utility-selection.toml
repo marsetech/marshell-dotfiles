@@ -12,6 +12,11 @@ icon  = "󰹑"
 exec  = "bash $HOME/.config/rofi/modules/screenshot-picker/main.sh"
 
 [[item]]
+label = "Update"
+icon  = ""
+exec  = "bash $HOME/.config/rofi/modules/system-updater/main.sh up"
+
+[[item]]
 label = "Clipboard Manager"
 icon  = ""
 exec  = "bash $HOME/.config/rofi/modules/clipboard-manager/main.sh"
