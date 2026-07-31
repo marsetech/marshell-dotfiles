@@ -1,0 +1,37 @@
+[menu]
+title = "Utility Selector"
+
+[[item]]
+label = "Emoticon"
+icon  = ""
+exec  = "bash $HOME/.config/rofi/modules/emoji-selector/main.sh"
+
+[[item]]
+label = "Screenshot"
+icon  = "󰹑"
+exec  = "bash $HOME/.config/rofi/modules/screenshot-picker/main.sh"
+
+[[item]]
+label = "Update"
+icon  = ""
+exec  = "bash $HOME/.config/rofi/modules/system-updater/main.sh up"
+
+[[item]]
+label = "Clipboard Manager"
+icon  = ""
+exec  = "bash $HOME/.config/rofi/modules/clipboard-manager/main.sh"
+
+[[item]]
+label = "Hyprpicker"
+icon  = ""
+exec  = "bash $HOME/.config/rofi/modules/colors-picker/main.sh"
+
+[[item]]
+label = "Wallpaper Switcher"
+icon  = "󰸉"
+exec  = "bash $HOME/.config/rofi/modules/wallpaper-switcher/main.sh"
+
+[[item]]
+label = "Internet"
+icon  = "󰖩"
+exec  = "bash $HOME/.config/rofi/modules/network-controller/main.sh"

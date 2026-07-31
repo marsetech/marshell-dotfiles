@@ -1,0 +1,7 @@
+@import "../config.rasi"
+
+@import "wallpaper-picker.d/container"
+@import "wallpaper-picker.d/search"
+@import "wallpaper-picker.d/list"
+@import "wallpaper-picker.d/item"
+@import "wallpaper-picker.d/feedback"

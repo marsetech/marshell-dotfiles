@@ -1,0 +1,7 @@
+@import "../config.rasi"
+
+@import "clipboard.d/container"
+@import "clipboard.d/search"
+@import "clipboard.d/list"
+@import "clipboard.d/item"
+@import "clipboard.d/feedback"
