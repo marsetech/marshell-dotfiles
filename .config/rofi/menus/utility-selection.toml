@@ -25,3 +25,8 @@ exec  = "bash $HOME/.config/rofi/modules/clipboard-manager/main.sh"
 label = "Hyprpicker"
 icon  = ""
 exec  = "bash $HOME/.config/rofi/modules/colors-picker/main.sh"
+
+[[item]]
+label = "Internet"
+icon  = "󰖩"
+exec  = "bash $HOME/.config/rofi/modules/network-controller/main.sh"
