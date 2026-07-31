@@ -1,0 +1,7 @@
+[menu]
+title = "Utility Selector"
+
+[[item]]
+label = "Emoticon"
+icon  = ""
+exec  = "bash $HOME/.config/rofi/modules/emoji-selector/main.sh"
