@@ -10,3 +10,8 @@ exec  = "bash $HOME/.config/rofi/modules/emoji-selector/main.sh"
 label = "Clipboard Manager"
 icon  = ""
 exec  = "bash $HOME/.config/rofi/modules/clipboard-manager/main.sh"
+
+[[item]]
+label = "Hyprpicker"
+icon  = ""
+exec  = "bash $HOME/.config/rofi/modules/colors-picker/main.sh"
