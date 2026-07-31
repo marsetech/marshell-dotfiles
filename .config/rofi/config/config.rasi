@@ -1,0 +1,23 @@
+@theme "~/.cache/wal/colors-rofi-dark.rasi"
+
+configuration {
+  modes: "drun,window";
+  font: "CaskaydiaCove Nerd Font 14";
+
+  show-icons: true;
+  icon-theme: "Tela-circle-black";
+
+  drun-display-format: "{name}";
+  hover-select: true;
+  matching: "regex";
+
+  drun-use-desktop-cache: true;
+  drun-reload-desktop-cache: true;
+
+  kb-move-char-back:    "Control+Left,Control+b";
+  kb-move-char-forward: "Control+Right,Control+f";
+  kb-move-word-back:    "Alt+b";
+  kb-move-word-forward: "Alt+f";
+  kb-row-left:          "Left,Control+Page_Up";
+  kb-row-right:         "Right,Control+Page_Down";
+}
