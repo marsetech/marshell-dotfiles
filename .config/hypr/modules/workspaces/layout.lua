@@ -1,5 +1,7 @@
 hl.config({
-  layout = "dwindle",
+  general = {
+    layout = "dwindle",
+  }
 })
 
 hl.config({
