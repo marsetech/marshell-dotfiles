@@ -1,8 +1,8 @@
 ---- DECORATIONS --------------------------------------------------
 hl.config({
   general = {
-    gaps_in          = 5,
-    gaps_out         = 20,
+    gaps_in          = 2,
+    gaps_out         = 4,
 
     border_size      = 2,
 
@@ -15,10 +15,12 @@ hl.config({
   },
 
   decoration = {
-    rounding         = 10,
+    rounding         = 0,
     rounding_power   = 2,
+
     active_opacity   = 1.0,
     inactive_opacity = 1.0,
+
     shadow           = {
       enabled      = true,
       range        = 4,
@@ -26,10 +28,13 @@ hl.config({
       color        = 0xee1a1a1a,
     },
     blur             = {
-      enabled  = true,
-      size     = 3,
-      passes   = 1,
-      vibrancy = 0.1696,
+      enabled           = true,
+      size              = 5,
+      passes            = 4,
+      vibrancy          = 0.1696,
+      ignore_opacity    = true,
+      new_optimizations = true,
+      xray              = true,
     },
   },
 })
