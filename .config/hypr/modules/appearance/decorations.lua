@@ -1,35 +1,42 @@
+local palette = require("shared.libs.bootstrap_colors")
+
 ---- DECORATIONS --------------------------------------------------
 hl.config({
   general = {
-    gaps_in          = 5,
-    gaps_out         = 20,
+    gaps_in          = 2,
+    gaps_out         = 4,
 
     border_size      = 2,
 
     col              = {
-      active_border   = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-      inactive_border = "rgba(595959aa)",
+      active_border   = palette.color2,
+      inactive_border = palette.background,
     },
     resize_on_border = false,
     allow_tearing    = false,
   },
 
   decoration = {
-    rounding         = 10,
+    rounding         = 0,
     rounding_power   = 2,
+
     active_opacity   = 1.0,
     inactive_opacity = 1.0,
+
     shadow           = {
       enabled      = true,
       range        = 4,
       render_power = 3,
-      color        = 0xee1a1a1a,
+      color        = palette.background,
     },
     blur             = {
-      enabled  = true,
-      size     = 3,
-      passes   = 1,
-      vibrancy = 0.1696,
+      enabled           = true,
+      size              = 5,
+      passes            = 4,
+      vibrancy          = 0.1696,
+      ignore_opacity    = true,
+      new_optimizations = true,
+      xray              = true,
     },
   },
 })
