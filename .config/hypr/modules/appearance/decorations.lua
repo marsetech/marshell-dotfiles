@@ -1,3 +1,5 @@
+local palette = require("shared.libs.bootstrap_colors")
+
 ---- DECORATIONS --------------------------------------------------
 hl.config({
   general = {
@@ -7,8 +9,8 @@ hl.config({
     border_size      = 2,
 
     col              = {
-      active_border   = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-      inactive_border = "rgba(595959aa)",
+      active_border   = palette.color2,
+      inactive_border = palette.background,
     },
     resize_on_border = false,
     allow_tearing    = false,
@@ -25,7 +27,7 @@ hl.config({
       enabled      = true,
       range        = 4,
       render_power = 3,
-      color        = 0xee1a1a1a,
+      color        = palette.background,
     },
     blur             = {
       enabled           = true,
