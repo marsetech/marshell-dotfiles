@@ -1,0 +1,12 @@
+[SddmGreeterTheme]
+Name=Marshell SDDM
+Description=A customized SDDM theme based on Pixie SDDM, adapted for marshell-dotfiles.
+Author=marsdev
+Copyright=(c) 2026 marsdev
+License=MIT
+Type=sddm-theme
+Version=1.0
+MainScript=Main.qml
+# Screenshot=screenshot.png
+QtVersion=6
+X-SDDM-Theme-InterfaceVersion=2
