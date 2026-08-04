@@ -7,6 +7,6 @@ License=MIT
 Type=sddm-theme
 Version=1.0
 MainScript=Main.qml
-Screenshot=screenshot.png
+# Screenshot=screenshot.png
 QtVersion=6
 X-SDDM-Theme-InterfaceVersion=2

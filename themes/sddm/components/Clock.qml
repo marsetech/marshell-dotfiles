@@ -21,8 +21,11 @@ Item {
         var hours = date.getHours();
         var minutes = date.getMinutes();
 
-        // If 24-hour is not strictly "true", convert to 12-hour format
-        if (config.use24HourClock !== "true") {
+        // Normalize boolean config value - accept "true", "True", "1" as enabled
+        var use24Hour = (config.use24HourClock === "true" || config.use24HourClock === "True" || config.use24HourClock === "1");
+
+        // If 24-hour is not enabled, convert to 12-hour format
+        if (!use24Hour) {
             hours = hours % 12;
             if (hours === 0) hours = 12; // Midnight becomes 12
         }

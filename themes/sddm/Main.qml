@@ -67,15 +67,18 @@ Rectangle {
             sess = 0;
         }
 
-        console.log("Pixie SDDM: Attempting login for user [" + user + "] session index [" + sess + "]");
+        console.log("Pixie SDDM: Attempting login with session index [" + sess + "]");
         sddm.login(user.trim(), pass, sess);
         loginTimeout.start();
     }
 
     Timer {
         id: loginTimeout
-        interval: 5000
-        onTriggered: container.isLoggingIn = false
+        interval: 60000  // 60 seconds as safety net for PAM timeout
+        onTriggered: {
+            // Safety net only - normal flow should complete via onLoginFailed/Succeeded
+            container.isLoggingIn = false
+        }
     }
 
     Connections {
@@ -98,13 +101,15 @@ Rectangle {
     property color baseColor: config.backgroundColor
     property color surfaceColor: Qt.lighter(baseColor, 1.3)
     property color surfaceVariantColor: Qt.lighter(baseColor, 1.6)
-    property bool uiReady: config.autoColor !== "true" || colorExtractor.processed
+    // Normalize boolean config value - accept "true", "True", "1" as enabled
+    property bool autoColorEnabled: (config.autoColor === "true" || config.autoColor === "True" || config.autoColor === "1")
+    property bool uiReady: !autoColorEnabled || colorExtractor.processed
 
     Timer {
         id: colorDelay
         interval: 1000 // Give it a full second
         repeat: true   // Keep trying until we succeed
-        running: backgroundImage.status === Image.Ready && !colorExtractor.processed && config.autoColor === "true"
+        running: backgroundImage.status === Image.Ready && !colorExtractor.processed && autoColorEnabled
         onTriggered: colorExtractor.requestPaint()
     }
 
@@ -140,7 +145,6 @@ Rectangle {
                 if (retries > 3) {
                     // If it's still pure black after 3 tries, it's a true black wallpaper
                     container.extractedAccent = "#D0D0D0";
-                    console.log("Pixie SDDM: Pure black wallpaper detected. Using neutral contrast.");
                     processed = true;
                 }
                 return; // Keep trying if it's just a GPU delay
@@ -184,13 +188,17 @@ Rectangle {
                 var avgBrightness = totalBrightness / pixelCount;
 
                 container.extractedAccent = avgBrightness < 0.5 ? "#D0D0D0" : "#404040";
-                console.log("Pixie SDDM: No vibrant colors. Avg brightness: " + avgBrightness.toFixed(2) + ". Using neutral contrast.");
                 processed = true;
                 return;
             }
 
-            // Merge Red wrap (350-360 and 0-10)
+            // Merge Red wrap (350-360 and 0-10): merge both weight and sample color
             histogram[0] += histogram[35];
+            if (sampleColors[35] && (!sampleColors[0] ||
+                (sampleColors[35].hsvSaturation * sampleColors[35].hsvValue) >
+                (sampleColors[0].hsvSaturation * sampleColors[0].hsvValue))) {
+                sampleColors[0] = sampleColors[35];
+            }
 
             // Find the most frequent vibrant hue (The Mode)
             var maxCount = -1;
@@ -207,7 +215,10 @@ Rectangle {
                 var h = finalColor.hsvHue;
                 var s = Math.max(0.35, Math.min(0.55, finalColor.hsvSaturation * 0.9));
                 container.extractedAccent = Qt.hsva(h, s, 0.95, 1.0);
-                console.log("Pixie SDDM: SUCCESS! Extracted Hue: " + (h * 360).toFixed(0) + "°");
+                processed = true;
+            } else {
+                // Fallback when no valid winner/sample found
+                container.extractedAccent = "#D0D0D0";
                 processed = true;
             }
         }
@@ -218,7 +229,6 @@ Rectangle {
         function onStatusChanged() {
             if (backgroundImage.status === Image.Ready) {
                 colorExtractor.processed = false;
-                colorDelay.start();
             }
         }
     }
@@ -226,6 +236,7 @@ Rectangle {
     FontLoader { id: fontRegular; source: "assets/fonts/FlexRounded-R.ttf" }
     FontLoader { id: fontMedium; source: "assets/fonts/FlexRounded-M.ttf" }
     FontLoader { id: fontBold; source: "assets/fonts/FlexRounded-B.ttf" }
+    FontLoader { id: iconFont; source: "assets/fonts/MaterialDesignIcons.ttf" }
 
     Image {
         id: backgroundImage
@@ -263,6 +274,7 @@ Rectangle {
             rightMargin: 40
         }
         textColor: container.extractedAccent
+        iconFontFamily: iconFont.name
         z: 100
         opacity: container.uiReady ? 1 : 0
         Behavior on opacity { NumberAnimation { duration: 300 } }
@@ -275,7 +287,6 @@ Rectangle {
             loginState.visible = false;
             loginState.isError = false;
             passwordField.text = "";
-            container.focus = true;
         }
     }
 
@@ -287,7 +298,8 @@ Rectangle {
 
     Text {
         id: dateText
-        text: Qt.formatDateTime(new Date(), "dddd, MMMM d")
+        property date currentDate: new Date()
+        text: currentDate.toLocaleDateString(Qt.locale(), Locale.LongFormat)
         color: container.extractedAccent
         font.pixelSize: 22
         font.family: fontRegular.name
@@ -299,6 +311,15 @@ Rectangle {
         }
         opacity: container.uiReady ? 1 : 0
         Behavior on opacity { NumberAnimation { duration: 300 } }
+
+        Timer {
+            interval: 60000  // Update every minute to catch midnight
+            running: true
+            repeat: true
+            onTriggered: dateText.currentDate = new Date()
+        }
+
+        Component.onCompleted: currentDate = new Date()
     }
 
     Item {
@@ -367,16 +388,16 @@ Rectangle {
             // Dynamic height: Expands smoothly when NumLock text appears
             height: 480 + (numLockIndicator.visible ? 40 : 0)
             x: (parent.width - width) / 2
-            y: (parent.height - 480) / 2
+            y: (parent.height - height) / 2
             color: loginState.isError ? "#442222" : baseColor
             opacity: 0.7
             radius: 32
 
             Behavior on color { ColorAnimation { duration: 200 } }
-            // Beautiful MD3 bounce/jiggle animation when card resizes
+            // Dynamic height animation when NumLock indicator appears/disappears
             Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.InOutQuad } }
-            // Also animate Y position so it stays perfectly centered when height changes
-            Behavior on y { NumberAnimation { duration: 300; easing.type: Easing.OutBack } }
+            // Vertical centering animates smoothly as card height changes
+            Behavior on y { NumberAnimation { duration: 300; easing.type: Easing.InOutQuad } }
 
             ColumnLayout {
                 anchors.fill: parent
@@ -429,7 +450,6 @@ Rectangle {
                             ctx.closePath();
                             ctx.clip();
                             ctx.drawImage(avatar, 0, 0, width, height);
-                            console.log("Pixie SDDM: Canvas draw complete.");
                         }
 
                         Timer {
@@ -445,7 +465,7 @@ Rectangle {
                             smooth: true
                             visible: false
 
-                            Component.onCompleted: {
+                            source: {
                                 var s = Qt.resolvedUrl("assets/avatar.png");
                                 if (typeof userModel !== "undefined" && userModel.count > 0) {
                                     var icon = userModel.data(userModel.index(container.userIndex, 0), Qt.UserRole + 3);
@@ -453,12 +473,17 @@ Rectangle {
                                         s = icon.toString();
                                     }
                                 }
-                                source = s;
+                                return s;
+                            }
+
+                            onSourceChanged: {
+                                if (status === Image.Ready) {
+                                    avatarCanvas.requestPaint();
+                                }
                             }
 
                             onStatusChanged: {
                                 if (status === Image.Ready) {
-                                    console.log("Pixie SDDM: Image ready, repainting Canvas.");
                                     repaintTimer.start();
                                 }
                             }
@@ -532,6 +557,7 @@ Rectangle {
                             text: "󰟀"
                             color: container.extractedAccent
                             font.pixelSize: 16
+                            font.family: iconFont.name
                         }
                         Text {
                             text: {
@@ -642,6 +668,10 @@ Rectangle {
         if (!loginState.visible) {
             loginState.visible = true;
             passwordField.forceActiveFocus();
+            // Forward printable characters to password field
+            if (event.text && event.text.length > 0 && !event.modifiers) {
+                passwordField.text = event.text;
+            }
             event.accepted = true;
         }
     }
@@ -806,6 +836,7 @@ Rectangle {
                         text: "󰟀"
                         color: isCurrent ? container.extractedAccent : "gray"
                         font.pixelSize: 16
+                        font.family: iconFont.name
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }

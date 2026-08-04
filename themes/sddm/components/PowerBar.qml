@@ -3,6 +3,7 @@
  * Author: xCaptaiN09
  */
 import QtQuick
+import QtQuick.Controls
 
 Row {
     id: powerBarRoot
@@ -10,8 +11,7 @@ Row {
     height: 30
 
     property color textColor: "white"
-
-    FontLoader { id: iconFont; source: "../assets/fonts/MaterialDesignIcons.ttf" }
+    property string iconFontFamily: ""
 
     // Battery (With forced live updates)
     Row {
@@ -20,9 +20,14 @@ Row {
         visible: typeof battery !== "undefined" && typeof battery.percent !== "undefined"
         anchors.verticalCenter: parent.verticalCenter
 
+        property int pollTick: 0
+
         Text {
             id: batteryText
-            text: (typeof battery !== "undefined" ? battery.percent : "0") + "%"
+            text: {
+                batteryRow.pollTick; // Force re-evaluation on timer tick
+                return (typeof battery !== "undefined" && battery.present ? battery.percent : "0") + "%";
+            }
             color: textColor
             font.pixelSize: 14
             font.weight: Font.Medium
@@ -30,10 +35,13 @@ Row {
         }
         Text {
             id: batteryIcon
-            text: (typeof battery !== "undefined" && battery.charging) ? "󱐋" : "󰁹"
+            text: {
+                batteryRow.pollTick; // Force re-evaluation on timer tick
+                return (typeof battery !== "undefined" && battery.present && battery.charging) ? "󱐋" : "󰁹";
+            }
             color: textColor
             font.pixelSize: 18
-            font.family: iconFont.name
+            font.family: powerBarRoot.iconFontFamily
             anchors.verticalCenter: parent.verticalCenter
         }
 
@@ -44,8 +52,7 @@ Row {
             running: typeof battery !== "undefined" && battery.present
             repeat: true
             onTriggered: {
-                batteryText.text = battery.percent + "%"
-                batteryIcon.text = battery.charging ? "󱐋" : "󰁹"
+                batteryRow.pollTick++;
             }
         }
     }
@@ -68,41 +75,65 @@ Row {
     }
 
     // Suspend
-    Text {
-        text: "󰤄"
-        color: textColor
-        font.pixelSize: 20
-        font.family: iconFont.name
+    AbstractButton {
+        width: 30
+        height: 30
         anchors.verticalCenter: parent.verticalCenter
-        MouseArea {
-            anchors.fill: parent
-            onClicked: sddm.suspend()
+        visible: typeof sddm !== "undefined" && sddm.canSuspend
+        Accessible.name: "Suspend"
+        onClicked: sddm.suspend()
+
+        contentItem: Text {
+            text: "󰤄"
+            color: textColor
+            font.pixelSize: 20
+            font.family: powerBarRoot.iconFontFamily
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
         }
+
+        background: Item {}
     }
 
     // Restart
-    Text {
-        text: "󰑐"
-        color: textColor
-        font.pixelSize: 20
-        font.family: iconFont.name
+    AbstractButton {
+        width: 30
+        height: 30
         anchors.verticalCenter: parent.verticalCenter
-        MouseArea {
-            anchors.fill: parent
-            onClicked: sddm.reboot()
+        visible: typeof sddm !== "undefined" && sddm.canReboot
+        Accessible.name: "Restart"
+        onClicked: sddm.reboot()
+
+        contentItem: Text {
+            text: "󰑐"
+            color: textColor
+            font.pixelSize: 20
+            font.family: powerBarRoot.iconFontFamily
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
         }
+
+        background: Item {}
     }
 
     // Shutdown
-    Text {
-        text: "󰐥"
-        color: textColor
-        font.pixelSize: 20
-        font.family: iconFont.name
+    AbstractButton {
+        width: 30
+        height: 30
         anchors.verticalCenter: parent.verticalCenter
-        MouseArea {
-            anchors.fill: parent
-            onClicked: sddm.powerOff()
+        visible: typeof sddm !== "undefined" && sddm.canPowerOff
+        Accessible.name: "Shutdown"
+        onClicked: sddm.powerOff()
+
+        contentItem: Text {
+            text: "󰐥"
+            color: textColor
+            font.pixelSize: 20
+            font.family: powerBarRoot.iconFontFamily
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
         }
+
+        background: Item {}
     }
 }
