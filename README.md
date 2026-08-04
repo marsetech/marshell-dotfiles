@@ -16,6 +16,12 @@ sddm/
 docs/
 ```
 
+## Acknowledgements
+
+This project incorporates ideas inspired by the following open-source projects:
+
+- **Pixie SDDM Theme** — https://github.com/xCaptaiN09/pixie-sddm
+
 ## License
 
 MIT
