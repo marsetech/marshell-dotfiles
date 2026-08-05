@@ -197,10 +197,13 @@ launch_tab() {
     local socket
     socket="$(kitty_socket "$pid")"
 
-    kitty @ --to "$socket" launch \
-        --type=tab --dont-take-focus "${CMD[@]}" >/dev/null
+    local new_window_id
+    new_window_id="$(kitty @ --to "$socket" launch --type=tab "${CMD[@]}")"
 
     wait_and_focus_workspace
+
+    kitty @ --to "$socket" focus-window --match "id:${new_window_id}" \
+        >/dev/null 2>&1 || true
 }
 
 # Focuses an already-open yazi session: workspace → Hyprland window → pane.
