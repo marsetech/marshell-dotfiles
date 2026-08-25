@@ -4,7 +4,7 @@ hl.config({
     kb_layout  = "us",
     kb_variant = "",
     kb_model   = "",
-    kb_options = "",
+    kb_options = "compose:rctrl",
     kb_rules   = "",
   },
 })
