@@ -1,6 +1,13 @@
-# Marshell Dotfiles
+<p align="center">
+  <img width=100%
+    alt="Repository Banner"
+    src="assets/branding/banner.webp"/>
+</p>
 
-A modular and reproducible Linux configuration for a modern Hyprland-based development environment.
+<h3 align="center">
+  <img width=100%
+    src="https://readme-typing-svg.herokuapp.com?font=Roboto Mono&weight=700&size=20&pause=3000&color=235B5A&background=00000000&center=true&vCenter=true&random=false&width=435&lines=✨️+Marshell+Dotfiles+✨️"
+</h3>
 
 ## Features
 
