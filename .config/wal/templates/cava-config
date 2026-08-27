@@ -1,0 +1,109 @@
+## CAVA — template pywal
+
+# ─────────────────────────────────────────────────────────────────
+# GENERAL
+# ─────────────────────────────────────────────────────────────────
+[general]
+; framerate = 60
+
+# Numero di barre (0 = riempi il terminale), larghezza e spazio in caratteri
+; bars        = 0
+; bar_width   = 2
+; bar_spacing = 1
+; center_align = 1
+
+# Sensibilità iniziale in %. autosens la riduce automaticamente se le barre saturano.
+; sensitivity = 100
+; autosens    = 1
+
+# Frequenze di taglio inferiore e superiore del visualizzatore (Hz)
+; lower_cutoff_freq  = 50
+; higher_cutoff_freq = 10000
+
+# Secondi di silenzio prima di entrare in sleep mode. 0 = disabilitato.
+; sleep_timer = 0
+
+
+# ─────────────────────────────────────────────────────────────────
+# INPUT
+# ─────────────────────────────────────────────────────────────────
+[input]
+
+# Metodo di cattura consigliato su sistemi moderni: pipewire o pulse.
+# source = auto usa il monitor del sink predefinito (loopback del playback).
+; method = pipewire
+; source = auto
+
+# Parametri opzionali — supportati solo da fifo, pipewire, sndio, oss
+; sample_rate = 44100
+; sample_bits = 16
+
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+[output]
+
+# noncurses (default) — aggiorna solo i caratteri cambiati, meno tearing
+# ncurses             — ridisegna tutto ogni frame
+# sdl / sdl_glsl      — output grafico (richiede compilazione con SDL)
+; method = noncurses
+
+# bottom (default) | top | left* | right* | horizontal**
+# *  solo sdl e ncurses
+# ** solo noncurses; le barre oscillano dal centro verso l'alto e il basso
+; orientation = bottom
+
+# stereo — le due metà specchiano i canali (frequenze basse al centro)
+# mono   — sinistra→destra dalle frequenze più basse alle più alte
+; channels    = stereo
+; mono_option = average   # left | right | average
+; reverse     = 0
+
+# Etichette sull'asse X: none | frequency
+; xaxis = none
+
+
+# ─────────────────────────────────────────────────────────────────
+# COLOR  ← gestito da pywal
+# ─────────────────────────────────────────────────────────────────
+[color]
+background = '{background}'
+foreground = '{foreground}'
+
+gradient = 1
+gradient_color_1 = '{color1}'
+gradient_color_2 = '{color2}'
+gradient_color_3 = '{color3}'
+gradient_color_4 = '{color4}'
+gradient_color_5 = '{color5}'
+gradient_color_6 = '{color6}'
+gradient_color_7 = '{color7}'
+gradient_color_8 = '{color8}'
+
+
+# ─────────────────────────────────────────────────────────────────
+# SMOOTHING
+# ─────────────────────────────────────────────────────────────────
+[smoothing]
+
+# 0–100: valori alti = più fluido ma meno reattivo ai transienti
+; noise_reduction = 77
+
+# Monstercat smoothing: livella le barre adiacenti per un look più morbido
+; monstercat = 0
+; waves = 0
+
+
+# ─────────────────────────────────────────────────────────────────
+# EQ
+# ─────────────────────────────────────────────────────────────────
+[eq]
+
+# Equalizzatore a bande libere. Valori > 1 amplificano, < 1 attenuano.
+# Più chiavi aggiungi, più è preciso.
+; 1 = 1   # bassi
+; 2 = 1
+; 3 = 1   # medi
+; 4 = 1
+; 5 = 1   # alti
