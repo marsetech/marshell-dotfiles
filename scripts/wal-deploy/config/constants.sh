@@ -13,10 +13,12 @@ readonly -a WAL_DEPLOY_APP_NAMES=(
 readonly -a WAL_DEPLOY_CACHE_FILES=(
     "$HOME/.cache/wal/colors-dgop.json"
     "$HOME/.cache/wal/colors-spicetify.ini"
+    "$HOME/.cache/wal/cava-config"
 )
 
 # Destination symlink path
 readonly -a WAL_DEPLOY_TARGET_LINKS=(
     "$HOME/.config/dgop/colors.json"
     "$HOME/.config/spicetify/Themes/pywal/color.ini"
+    "$HOME/.config/cava/config"
 )
