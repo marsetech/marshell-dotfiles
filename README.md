@@ -1,25 +1,24 @@
 <div align="center">
-  <img width=100%
-    alt="Repository Banner"
-    src="assets/branding/banner.webp"/>
+  <img width=100% alt="Repository Banner" src="assets/banner.webp"/>
+</div>
+
+<div align="center" style="margin-top: -5px;">
+  <img width=50% alt="Repository Title Banner" src="assets/header.webp"/>
 </div>
 
 <div align="center">
-  <img width=100%
-    src="https://readme-typing-svg.herokuapp.com?font=Roboto Mono&weight=700&size=24&pause=3000&color=235B5A&background=00000000&center=true&vCenter=true&random=false&width=500&height=35&lines=✨️+Marshell+Dotfiles+✨️" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Roboto+Mono&weight=600&size=16&pause=3000&color=67716F&center=true&vCenter=true&width=375&height=35&lines=Crafting+a+system+that+feels+like+home." alt="Typing SVG" />
 </div>
 
 <div align="center">
-  <p><b><i>Crafting a system that feels like home.</i></b></p>
+  <div style="display: flex; flex-wrap: nowrap; justify-content: center; margin-top: -10px;">
+    <img src="assets/logo/endeavouros.png" alt="EndeavourOS" style="width: 5%; height: 3%; margin: 20px;"/>
+    <img src="assets/logo/cachyos.png" alt="CachyOS" style="width: 6%; height: 3%; margin: 20px;"/>
+    <img src="assets/logo/archlinux.png" alt="Arch Linux" style="width: 5%; height: 3%; margin: 20px;"/>
+    <img src="assets/logo/garuda.png" alt="Garuda" style="width: 6%; height: 3%; margin: 20px;"/>
+    <img src="assets/logo/nixos.png" alt="NixOS" style="width: 6%; height: 3%; margin: 20px;"/>
+  </div>
 </div>
-
-<div align="center">
-  <img width=5% src="assets/logo/endeavour.svg"/>
-  <img width=5% src="assets/logo/cachy-os.svg"/>
-  <img width=5% src="assets/logo/arch-linux.svg"/>
-  <img width=5% src="assets/logo/manjaro.svg"/>
-</div>
-<br>
 
 ## Features
 
