@@ -1,5 +1,6 @@
-# In the [color] section
+[color]
 background = '#232136'
+
 gradient = 1
 gradient_count = 6
 gradient_color_1 = '#3e8fb0'
