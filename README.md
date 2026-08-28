@@ -12,11 +12,11 @@
 
 <div align="center">
   <div style="display: flex; flex-wrap: nowrap; justify-content: center; margin-top: -10px;">
-    <img src="assets/logo/endeavouros.png" alt="EndeavourOS" style="width: 5%; height: 3%; margin: 20px;"/>
-    <img src="assets/logo/cachyos.png" alt="CachyOS" style="width: 6%; height: 3%; margin: 20px;"/>
-    <img src="assets/logo/archlinux.png" alt="Arch Linux" style="width: 5%; height: 3%; margin: 20px;"/>
-    <img src="assets/logo/garuda.png" alt="Garuda" style="width: 6%; height: 3%; margin: 20px;"/>
-    <img src="assets/logo/nixos.png" alt="NixOS" style="width: 6%; height: 3%; margin: 20px;"/>
+    <img src="assets/logo/endeavouros.png" alt="EndeavourOS" style="width: 5%; height: 3%; margin: 50px;"/>
+    <img src="assets/logo/cachyos.png" alt="CachyOS" style="width: 6%; height: 3%; margin: 50px;"/>
+    <img src="assets/logo/archlinux.png" alt="Arch Linux" style="width: 5%; height: 3%; margin: 50px;"/>
+    <img src="assets/logo/garuda.png" alt="Garuda" style="width: 6%; height: 3%; margin: 50px;"/>
+    <img src="assets/logo/nixos.png" alt="NixOS" style="width: 6%; height: 3%; margin: 50px;"/>
   </div>
 </div>
 
@@ -63,7 +63,11 @@
   <img src="https://readme-typing-svg.herokuapp.com?font=Roboto+Mono&weight=700&size=24&letterSpacing=0.2em&pause=1000&color=317A75&width=435&height=40&lines=THEMING" alt="Typing SVG" style="margin-bottom: -10px;" />
 </h2>
 
-The current palette is a red/crimson theme inspired by **Ayanokoji Kiyotaka** from _Classroom of the Elite_, applied consistently across Hyprland, Waybar, Rofi, Zed, and pywal templates for Zathura, Discord, Spotify and many more — so switching aesthetic direction in the future means updating a small set of source-of-truth files, not hunting through every app's config.
+The dotfiles use a centralized theming workflow built around Pywal and wallpaper selection. Application colors are derived from the current wallpaper and propagated through dedicated templates, keeping the visual configuration consistent across Hyprland, Waybar, Rofi, Zed, Cava, Zathura, Discord, Spotify, and other supported applications.
+
+A theme can be regenerated directly from a wallpaper with `wal`, or applied through the custom Rofi wallpaper switcher located in `config/rofi/modules`. The wallpaper switcher handles wallpaper selection and triggers the same theming pipeline, making it the preferred entry point for day-to-day theme changes.
+
+Static application themes are also available where supported, providing a fallback for applications or configurations that do not use Pywal-generated colors. This keeps dynamic wallpaper-based theming separate from application-specific fallback configurations while preserving a consistent dotfiles structure.
 
 <h2>
   <img src="https://readme-typing-svg.herokuapp.com?font=Roboto+Mono&weight=700&size=24&letterSpacing=0.2em&pause=1000&color=317A75&width=435&height=40&lines=CREDITS" alt="Typing SVG" style="margin-bottom: -10px;" />
