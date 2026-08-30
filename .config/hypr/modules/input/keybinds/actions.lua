@@ -6,6 +6,7 @@ hl.bind(input.primary_key .. " + Q", hl.dsp.window.close())
 hl.bind(input.primary_key .. " + F", hl.dsp.window.fullscreen())
 hl.bind(input.primary_key .. " + T", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(input.primary_key .. " + P", hl.dsp.window.pseudo())
+hl.bind(input.secondary_key .. " + R", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(input.tertiary_key .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
 hl.bind(input.primary_key .. " + W", hl.dsp.exec_cmd(launcher.wallpaper_engine_switcher))
