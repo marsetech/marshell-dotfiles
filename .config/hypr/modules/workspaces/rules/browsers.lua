@@ -1,16 +1,5 @@
 local settings = require("shared.libs.window_rules_helper")
 
-settings.window_group({
-  name = "system_update",
-  match = {
-    title = "Peek preview - Brave Origin",
-  },
-  rules = {
-    settings.opacity.system,
-    settings.workspace.terminal,
-  }
-})
-
 ---- Chromium based Browsers ------------------------------
 local chromium_based_browsers = {
   "(google-)?[cC]hrom(e|ium)",
