@@ -25,5 +25,5 @@ hl.layer_rule({
   match = {
     namespace = "selection"
   },
-  animation = "off",
+  no_anim = true,
 })
