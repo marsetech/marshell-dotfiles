@@ -1,2 +1,4 @@
 require("modules.workspaces.layout")
-require("modules.workspaces.window_rules")
+require("modules.workspaces.layers")
+
+require("modules.workspaces.rules")
