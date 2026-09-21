@@ -7,7 +7,7 @@ return {
   root_file_manager = file_manager_provider .. " --system",
 
   music = "spotify",
-  browser = "brave-origin",
+  browser = "~/.config/hypr/scripts/system/browser-handler.service.sh",
   editor = "zeditor",
   screen_recording = "obs"
 }
