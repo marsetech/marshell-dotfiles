@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+readonly TERMINAL_HANDLER="$SCRIPT_DIR/terminal-handler.service.sh"
+
 readonly MIME_TYPE="text/plain"
 readonly DESKTOP_ENTRY="$(xdg-mime query default "$MIME_TYPE")"
 
@@ -26,6 +29,57 @@ find_desktop_entry() {
     )
 
     return 1
+}
+
+parse_exec() {
+    local command="$1"
+    local -n result="$2"
+    local argument=""
+    local character
+    local quoted=false
+    local escaped=false
+    local index
+
+    result=()
+
+    for ((index = 0; index < ${#command}; index++)); do
+        character="${command:index:1}"
+
+        if [[ "$escaped" == true ]]; then
+            argument+="$character"
+            escaped=false
+            continue
+        fi
+
+        if [[ "$character" == '\' ]]; then
+            escaped=true
+            continue
+        fi
+
+        if [[ "$character" == '"' ]]; then
+            quoted=$([[ "$quoted" == true ]] && echo false || echo true)
+            continue
+        fi
+
+        if [[ "$quoted" == false && "$character" =~ [[:space:]] ]]; then
+            if [[ -n "$argument" ]]; then
+                result+=("$argument")
+                argument=""
+            fi
+
+            continue
+        fi
+
+        argument+="$character"
+    done
+
+    if [[ "$escaped" == true ]]; then
+        argument+='\'
+    fi
+
+    if [[ -n "$argument" ]]; then
+        result+=("$argument")
+    fi
 }
 
 readonly DESKTOP_FILE="$(find_desktop_entry "$DESKTOP_ENTRY")"
@@ -55,7 +109,7 @@ if [[ -z "$EXEC_COMMAND" ]]; then
     exit 1
 fi
 
-read -r -a EXEC_ARGS <<< "$EXEC_COMMAND"
+parse_exec "$EXEC_COMMAND" EXEC_ARGS
 
 for index in "${!EXEC_ARGS[@]}"; do
     case "${EXEC_ARGS[$index]}" in
@@ -65,42 +119,4 @@ for index in "${!EXEC_ARGS[@]}"; do
     esac
 done
 
-readonly TERMINAL_DESKTOP_ENTRY="$(
-    xdg-mime query default inode/directory
-)"
-
-if [[ -z "$TERMINAL_DESKTOP_ENTRY" ]]; then
-    exit 1
-fi
-
-readonly TERMINAL_DESKTOP_FILE="$(
-    find_desktop_entry "$TERMINAL_DESKTOP_ENTRY"
-)"
-
-readonly TERMINAL_COMMAND="$(
-    sed -n 's/^Exec=//p' "$TERMINAL_DESKTOP_FILE" | head -n 1
-)"
-
-if [[ -z "$TERMINAL_COMMAND" ]]; then
-    exit 1
-fi
-
-read -r -a TERMINAL_ARGS <<< "$TERMINAL_COMMAND"
-
-for index in "${!TERMINAL_ARGS[@]}"; do
-    case "${TERMINAL_ARGS[$index]}" in
-        %f|%F|%u|%U|%d|%D|%n|%N|%i|%c|%k|%v|%m)
-            unset 'TERMINAL_ARGS[index]'
-            ;;
-    esac
-done
-
-case "${TERMINAL_ARGS[0]}" in
-    kitty|ghostty|foot)
-        exec "${TERMINAL_ARGS[@]}" -e "${EXEC_ARGS[@]}"
-        ;;
-
-    *)
-        exit 1
-        ;;
-esac
+exec "$TERMINAL_HANDLER" "${EXEC_ARGS[@]}"
