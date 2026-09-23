@@ -1,4 +1,4 @@
-local terminal_provider = "kitty"
+local terminal_provider = "~/.config/hypr/scripts/system/terminal-handler.service.sh"
 local file_manager_provider = "~/.config/hypr/scripts/desktop/file-manager-session-manager.sh"
 
 return {
@@ -7,7 +7,7 @@ return {
   root_file_manager = file_manager_provider .. " --system",
 
   music = "spotify",
-  browser = "brave-origin",
-  editor = "zeditor",
+  browser = "~/.config/hypr/scripts/system/browser-handler.service.sh",
+  editor = "~/.config/hypr/scripts/system/editor-handler.service.sh",
   screen_recording = "obs"
 }
