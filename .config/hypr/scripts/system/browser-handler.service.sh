@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-readonly MIME_TYPE="x-scheme-handler/http"
+readonly MIME_TYPE="x-scheme-handler/https"
 readonly DESKTOP_ENTRY="$(xdg-mime query default "$MIME_TYPE")"
 
 if [[ -z "$DESKTOP_ENTRY" ]]; then
