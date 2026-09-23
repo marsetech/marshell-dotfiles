@@ -1,4 +1,4 @@
-local terminal_provider = "kitty"
+local terminal_provider = "~/.config/hypr/scripts/system/terminal-handler.service.sh"
 local file_manager_provider = "~/.config/hypr/scripts/desktop/file-manager-session-manager.sh"
 
 return {
