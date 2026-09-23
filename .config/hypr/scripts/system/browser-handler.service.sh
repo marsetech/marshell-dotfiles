@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
-readonly BROWSER_DESKTOP_ENTRY="$(xdg-mime query default x-scheme-handler/http)"
+readonly MIME_TYPE="x-scheme-handler/http"
+readonly DESKTOP_ENTRY="$(xdg-mime query default "$MIME_TYPE")"
 
-gtk-launch "${BROWSER_DESKTOP_ENTRY%.desktop}"
+if [[ -z "$DESKTOP_ENTRY" ]]; then
+    exit 1
+fi
+
+exec gtk-launch "${DESKTOP_ENTRY%.desktop}"
