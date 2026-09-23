@@ -8,6 +8,6 @@ return {
 
   music = "spotify",
   browser = "~/.config/hypr/scripts/system/browser-handler.service.sh",
-  editor = "zeditor",
+  editor = "~/.config/hypr/scripts/system/editor-handler.service.sh",
   screen_recording = "obs"
 }
