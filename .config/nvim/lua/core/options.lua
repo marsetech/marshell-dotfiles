@@ -1,38 +1,45 @@
--- Editor's numbers settings
-vim.opt.nu = true
+-- Line numbers
+vim.opt.number = true
 vim.opt.relativenumber = true
 
--- Tab settings
+-- Indentation
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-
--- Indentation settings
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.breakindent = true
 
--- Behaviour settings
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undofile = true
+-- Editing
 vim.opt.wrap = true
-vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
-vim.opt.clipboard:append("unnamedplus")
-vim.opt.isfname:append("@-@")
 vim.opt.scrolloff = 8
-vim.opt.cmdheight = 0
+vim.opt.isfname:append("@-@")
 
--- History settings
+-- Search
 vim.opt.incsearch = true
 vim.opt.inccommand = "split"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
 
--- Terminal settings
-vim.opt.termguicolors = true
+-- Files and persistence
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
+
+-- Clipboard
+vim.opt.clipboard:append("unnamedplus")
+
+-- Windows and splits
 vim.opt.splitright = true
+
+-- Interface
+vim.opt.cmdheight = 0
+vim.opt.termguicolors = true
+vim.opt.mouse = "a"
+vim.opt.guicursor = ""
+
+-- Window borders
 -- vim.opt.winborder = "rounded"
-vim.g.have_nerd_font = true
