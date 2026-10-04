@@ -12,11 +12,11 @@
 
 <div align="center">
   <div style="display: flex; flex-wrap: nowrap; justify-content: center; margin-top: -10px;">
-    <img src="assets/logo/endeavouros.png" alt="EndeavourOS" style="width: 5%; height: 3%; margin: 50px;"/>
-    <img src="assets/logo/cachyos.png" alt="CachyOS" style="width: 6%; height: 3%; margin: 50px;"/>
-    <img src="assets/logo/archlinux.png" alt="Arch Linux" style="width: 5%; height: 3%; margin: 50px;"/>
-    <img src="assets/logo/garuda.png" alt="Garuda" style="width: 6%; height: 3%; margin: 50px;"/>
-    <img src="assets/logo/nixos.png" alt="NixOS" style="width: 6%; height: 3%; margin: 50px;"/>
+    <img src="assets/logo/endeavouros.webp" alt="EndeavourOS" style="width: 5%; height: 3%; margin: 50px;"/>
+    <img src="assets/logo/cachyos.webp" alt="CachyOS" style="width: 6%; height: 3%; margin: 50px;"/>
+    <img src="assets/logo/archlinux.webp" alt="Arch Linux" style="width: 5%; height: 3%; margin: 50px;"/>
+    <img src="assets/logo/garuda.webp" alt="Garuda" style="width: 6%; height: 3%; margin: 50px;"/>
+    <img src="assets/logo/nixos.webp" alt="NixOS" style="width: 6%; height: 3%; margin: 50px;"/>
   </div>
 </div>
 
@@ -25,7 +25,7 @@
     <img src="https://readme-typing-svg.herokuapp.com?font=Roboto+Mono&weight=700&size=24&letterSpacing=0.2em&pause=1000&color=317A75&width=435&height=40&lines=OVERVIEW" alt="Typing SVG" style="margin-bottom: -10px;" />
   </h2>
   <div align="center">
-    <img src="assets/previews/desktop-overview.png" alt="Hyprland Preview" style="width: 100%"/>
+    <img src="assets/previews/desktop-overview.webp" alt="Hyprland Preview" style="width: 100%"/>
   </div>
 </div>
 
@@ -33,9 +33,9 @@
   <summary><strong>More previews</strong></summary>
   <br>
   <div>
-    <img src="assets/previews/desktop-coding.png" alt="Coding Workspace" style="width: 100%; margin-bottom: 15px"/>
-    <img src="assets/previews/desktop-music.png" alt="Music Workspace" style="width: 100%; margin-bottom: 15px"/>
-    <img src="assets/previews/desktop-socials.png" alt="Socials Workspace" style="width: 100%; margin-bottom: 15px"/>
+    <img src="assets/previews/desktop-coding.webp" alt="Coding Workspace" style="width: 100%; margin-bottom: 15px"/>
+    <img src="assets/previews/desktop-music.webp" alt="Music Workspace" style="width: 100%; margin-bottom: 15px"/>
+    <img src="assets/previews/desktop-socials.webp" alt="Socials Workspace" style="width: 100%; margin-bottom: 15px"/>
     <img src="assets/previews/desktop-windows.webp" alt="Hyprland Configuration" style="width: 100%"/>
   </div>
 </details>
