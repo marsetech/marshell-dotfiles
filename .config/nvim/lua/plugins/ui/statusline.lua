@@ -20,6 +20,28 @@ local pywal = require("lib.pywal")
 
 local PYWAL_RELOAD_DELAY = 200
 
+local MODE_ICONS = {
+  n = "\u{f121} ",
+  i = "\u{f11c} ",
+  v = "\u{f0168} ",
+  V = "\u{f0168} ",
+  ["\22"] = "\u{f0168} ",
+  c = "\u{f120} ",
+  R = "\u{f044} ",
+  t = "\u{f120} ",
+}
+
+local MODE_NAMES = {
+  n = "NORMAL",
+  i = "INSERT",
+  v = "VISUAL",
+  V = "VISUAL LINE",
+  ["\22"] = "VISUAL BLOCK",
+  c = "COMMAND",
+  R = "REPLACE",
+  t = "TERMINAL",
+}
+
 -- ============================================================================
 -- Lualine Theme
 -- ============================================================================
@@ -98,6 +120,20 @@ local function create_theme()
 end
 
 -- ============================================================================
+-- Mode Component
+-- ============================================================================
+
+local function mode_component()
+  local mode = vim.api.nvim_get_mode().mode
+
+  return string.format(
+    "%s %s",
+    MODE_ICONS[mode] or "\u{f059} ",
+    MODE_NAMES[mode] or mode:upper()
+  )
+end
+
+-- ============================================================================
 -- Lualine Configuration
 -- ============================================================================
 
@@ -109,8 +145,8 @@ local function create_config()
       component_separators = "",
 
       section_separators = {
-        left = "",
-        right = "",
+        left = "",
+        right = "",
       },
 
       globalstatus = true,
@@ -119,10 +155,7 @@ local function create_config()
     sections = {
       lualine_a = {
         {
-          "mode",
-          separator = {
-            left = "",
-          },
+          mode_component,
           right_padding = 2,
         },
       },
@@ -143,37 +176,15 @@ local function create_config()
 
       lualine_y = {
         "filetype",
-        "progress",
       },
 
       lualine_z = {
         {
           "location",
-          separator = {
-            right = "",
-          },
           left_padding = 2,
         },
       },
     },
-
-    inactive_sections = {
-      lualine_a = {
-        "filename",
-      },
-
-      lualine_b = {},
-      lualine_c = {},
-      lualine_x = {},
-      lualine_y = {},
-
-      lualine_z = {
-        "location",
-      },
-    },
-
-    tabline = {},
-    extensions = {},
   }
 end
 
