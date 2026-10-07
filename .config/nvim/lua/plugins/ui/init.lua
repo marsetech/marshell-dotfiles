@@ -1,8 +1,12 @@
--- UI plugins entrypoint
-
--- NOTE: Those're snacks.nvim non-related plugins
--- For more informations, see: lua/plugins/snacks.lua
-
+-- ============================================================================
+-- Plugins dependencies
+-- ============================================================================
 require("plugins.ui.colorscheme")
-
 require("plugins.ui.statusline")
+
+-- ============================================================================
+-- Snacks-related plugins dependencies
+-- ============================================================================
+return {
+  dashboard = require("plugins.ui.dashboard")
+}
