@@ -43,7 +43,7 @@ function M.colors()
   local wal = M.load()
   local colors = {}
 
-  for index = 0, 8 do
+  for index = 0, 15 do
     colors["color" .. index] = M.to_hex(wal["color" .. index])
   end
 
