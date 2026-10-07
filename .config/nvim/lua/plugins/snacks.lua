@@ -11,9 +11,11 @@ vim.pack.add({
 })
 
 
+local ui = require("plugins.ui")
+
 -- ============================================================================
 -- Configuration
 -- ============================================================================
 require("snacks").setup({
-  dashboard = require("plugins.ui.dashboard"),
+  dashboard = ui.dashboard,
 })

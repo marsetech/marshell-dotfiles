@@ -32,7 +32,7 @@ function M.to_hex(color)
 end
 
 -- ============================================================================
--- Theme
+-- Palette
 -- ============================================================================
 
 function M.load()
@@ -41,19 +41,16 @@ end
 
 function M.colors()
   local wal = M.load()
+  local colors = {}
 
-  return {
-    color0 = M.to_hex(wal.color0),
-    color1 = M.to_hex(wal.color1),
-    color2 = M.to_hex(wal.color2),
-    color3 = M.to_hex(wal.color3),
-    color4 = M.to_hex(wal.color4),
-    color5 = M.to_hex(wal.color5),
-    color6 = M.to_hex(wal.color6),
-    color7 = M.to_hex(wal.color7),
-    foreground = M.to_hex(wal.foreground),
-    background = M.to_hex(wal.background),
-  }
+  for index = 0, 15 do
+    colors["color" .. index] = M.to_hex(wal["color" .. index])
+  end
+
+  colors.foreground = M.to_hex(wal.foreground)
+  colors.background = M.to_hex(wal.background)
+
+  return colors
 end
 
 -- ============================================================================
@@ -73,9 +70,7 @@ function M.watch(callback, delay)
     end
 
     vim.defer_fn(function()
-      vim.schedule(function()
-        callback()
-      end)
+      vim.schedule(callback)
     end, delay or 200)
   end)
 
