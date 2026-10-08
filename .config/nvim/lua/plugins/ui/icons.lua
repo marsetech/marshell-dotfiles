@@ -1,12 +1,13 @@
--- ============================================================================
--- Plugins dependencies
--- ============================================================================
-require("plugins.ui.icons")
-require("plugins.ui.statusline")
+-- lua/plugins/ui/icons.lua
 
 -- ============================================================================
--- Snacks-related plugins dependencies
+-- Dependencies
 -- ============================================================================
-return {
-  dashboard = require("plugins.ui.dashboard")
-}
+vim.pack.add({
+  "https://github.com/echasnovski/mini.icons",
+})
+
+-- ============================================================================
+-- Configuration
+-- ============================================================================
+require("mini.icons").setup({})
