@@ -6,11 +6,9 @@
 
 vim.pack.add({
   "https://github.com/nvim-lualine/lualine.nvim",
-
-  -- Dependencies
-  "https://github.com/nvim-tree/nvim-web-devicons",
 })
 
+local file_icons = require("mini.icons")
 local lualine = require("lualine")
 local pywal = require("lib.pywal")
 
@@ -20,6 +18,7 @@ local pywal = require("lib.pywal")
 
 local PYWAL_RELOAD_DELAY = 200
 
+-- Custom statusline icons
 local MODE_ICONS = {
   n = "\u{f121} ",
   i = "\u{f11c} ",
@@ -120,7 +119,7 @@ local function create_theme()
 end
 
 -- ============================================================================
--- Mode Component
+-- Components
 -- ============================================================================
 
 local function mode_component()
@@ -131,6 +130,18 @@ local function mode_component()
     MODE_ICONS[mode] or "\u{f059} ",
     MODE_NAMES[mode] or mode:upper()
   )
+end
+
+local function filetype_component()
+  local filetype = vim.bo.filetype
+
+  if filetype == "" then
+    return ""
+  end
+
+  local icon = file_icons.get("filetype", filetype)
+
+  return icon .. " " .. filetype
 end
 
 -- ============================================================================
@@ -175,7 +186,7 @@ local function create_config()
       lualine_x = {},
 
       lualine_y = {
-        "filetype",
+        filetype_component,
       },
 
       lualine_z = {
