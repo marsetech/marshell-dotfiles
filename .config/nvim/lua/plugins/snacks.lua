@@ -18,6 +18,6 @@ local navigation = require("plugins.navigation")
 -- ============================================================================
 require("snacks").setup({
   dashboard = ui.dashboard,
-  file_browser = navigation.file_browser,
-  file_picker = navigation.file_picker,
+  explorer = navigation.file_browser,
+  picker = navigation.file_picker,
 })
