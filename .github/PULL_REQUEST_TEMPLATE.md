@@ -9,29 +9,6 @@ Explain what problem this solves or what motivated this update.
 
 ---
 
-## Scope
-
-<!--
-Select the affected area(s):
--->
-
-- [ ] Desktop Environment
-- [ ] Terminal & Shell
-- [ ] CLI Applications
-- [ ] Editor / IDE
-- [ ] Media Applications
-- [ ] Themes
-- [ ] System Configuration
-- [ ] Packages
-- [ ] Web Applications
-- [ ] Git / Github
-- [ ] Scripts
-- [ ] Installer
-- [ ] Documentation
-- [ ] Assets
-
----
-
 ## Changes
 
 <!--
@@ -106,7 +83,7 @@ Describe possible effects of this change.
 
 ---
 
-## Screenshots / Preview
+## Preview
 
 <!--
 Add screenshots, recordings or examples if applicable.
