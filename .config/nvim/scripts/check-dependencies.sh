@@ -9,7 +9,6 @@ set -euo pipefail
 REQUIRED_COMMANDS=(
   git
   tree-sitter
-  tree-sitter-cli
 )
 
 missing=0
