@@ -9,7 +9,9 @@ local M = {}
 local WAL_DIRECTORY = vim.fn.expand("~/.cache/wal")
 local WAL_FILENAME = "colors-hyprland.lua"
 local WAL_FILE = WAL_DIRECTORY .. "/" .. WAL_FILENAME
-
+local DEFAULT_COLORSCHEME = "pywal"
+local STATE_DIRECTORY = vim.fn.stdpath("state")
+local COLORSCHEME_FILE = STATE_DIRECTORY .. "/colorscheme"
 local DEFAULT_DELAY = 200
 
 -- ============================================================================
@@ -209,6 +211,49 @@ function M.watch(callback, delay)
     once = true,
     callback = M.stop_watch,
   })
+end
+
+-- ============================================================================
+-- Colorscheme Integration
+-- ============================================================================
+
+function M.setup()
+  local colorscheme = DEFAULT_COLORSCHEME
+
+  if vim.fn.filereadable(COLORSCHEME_FILE) == 1 then
+    local saved = vim.fn.readfile(COLORSCHEME_FILE)
+
+    if saved[1] and saved[1] ~= "" then
+      colorscheme = saved[1]
+    end
+  end
+
+  local group = vim.api.nvim_create_augroup(
+    "ColorschemePersistence",
+    { clear = true }
+  )
+
+  vim.api.nvim_create_autocmd("ColorScheme", {
+    group = group,
+    callback = function()
+      vim.fn.mkdir(STATE_DIRECTORY, "p")
+      vim.fn.writefile({ vim.g.colors_name }, COLORSCHEME_FILE)
+    end,
+  })
+
+  local ok = pcall(vim.cmd.colorscheme, colorscheme)
+
+  if not ok then
+    vim.cmd.colorscheme(DEFAULT_COLORSCHEME)
+  end
+
+  M.watch(function()
+    if vim.g.colors_name ~= "pywal" then
+      return
+    end
+
+    vim.cmd.colorscheme("pywal")
+  end)
 end
 
 return M
