@@ -1,8 +1,8 @@
 local function opts_desc(desc)
-    return {
-        silent = true,
-        desc = desc,
-    }
+  return {
+    silent = true,
+    desc = desc,
+  }
 end
 
 -- Leader keys
@@ -33,34 +33,34 @@ vim.keymap.set("n", "<C-c>", "<cmd>nohlsearch<CR>", opts_desc("Clear search high
 
 -- Search and replace
 vim.keymap.set(
-    "n",
-    "<leader>s",
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    opts_desc("Replace word under cursor globally")
+  "n",
+  "<leader>s",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  opts_desc("Replace word under cursor globally")
 )
 
 -- Files
 vim.keymap.set(
-    "n",
-    "<leader>x",
-    "<cmd>!chmod +x %<CR>",
-    opts_desc("Make current file executable")
+  "n",
+  "<leader>x",
+  "<cmd>!chmod +x %<CR>",
+  opts_desc("Make current file executable")
 )
 
 -- Configuration
 vim.keymap.set(
-    "n",
-    "<leader>re",
-    "<cmd>restart<CR>",
-    opts_desc("Restart Neovim configuration")
+  "n",
+  "<leader>re",
+  "<cmd>restart<CR>",
+  opts_desc("Restart Neovim configuration")
 )
 
 -- Undo tree
 vim.keymap.set("n", "<leader>u", function()
-    vim.cmd.packadd("nvim.undotree")
-    require("undotree").open()
+  vim.cmd.packadd("nvim.undotree")
+  require("undotree").open()
 end, opts_desc("Toggle built-in undo tree"))
 
 -- Buffers
 vim.keymap.set("n", "<A-Tab>", "<cmd>BufferLineCycleNext<CR>", opts_desc("Next buffer"))
-vim.keymap.set("n", "<C-Q>", "<cmd>bdelete<CR>", opts_desc("Delete buffer"))
+vim.keymap.set("n", "<A-q>", "<cmd>bdelete<CR>", opts_desc("Delete buffer"))
