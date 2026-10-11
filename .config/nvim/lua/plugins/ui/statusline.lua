@@ -16,7 +16,7 @@ local pywal = require("lib.pywal")
 -- Constants
 -- ============================================================================
 
-local PYWAL_RELOAD_DELAY = 200
+local COLORSCHEME = "pywal"
 
 -- Custom statusline icons
 local MODE_ICONS = {
@@ -200,25 +200,31 @@ local function create_config()
 end
 
 -- ============================================================================
--- Pywal Watcher
+-- Colorscheme Integration
 -- ============================================================================
 
-local function watch_pywal()
-  pywal.watch(function()
-    local ok, theme = pcall(create_theme)
+local function refresh_theme()
+  if vim.g.colors_name ~= COLORSCHEME then
+    return
+  end
 
-    if not ok or not theme then
-      return
-    end
+  local ok, theme = pcall(create_theme)
 
-    lualine.setup({
-      options = {
-        theme = theme,
-      },
-    })
+  if not ok then
+    vim.notify(
+      "Failed to update Lualine Pywal theme: " .. tostring(theme),
+      vim.log.levels.ERROR
+    )
+    return
+  end
 
-    lualine.refresh()
-  end, PYWAL_RELOAD_DELAY)
+  lualine.setup({
+    options = {
+      theme = theme,
+    },
+  })
+
+  lualine.refresh()
 end
 
 -- ============================================================================
@@ -226,4 +232,14 @@ end
 -- ============================================================================
 
 lualine.setup(create_config())
-watch_pywal()
+
+local group = vim.api.nvim_create_augroup(
+  "LualinePywalTheme",
+  { clear = true }
+)
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = group,
+  pattern = COLORSCHEME,
+  callback = refresh_theme,
+})
