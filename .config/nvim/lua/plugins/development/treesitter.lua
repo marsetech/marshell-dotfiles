@@ -14,7 +14,7 @@ local treesitter = require("nvim-treesitter")
 
 vim.filetype.add({
   pattern = {
-    [".*%.conf"] = "hyprlang",
+    [".*/hypr/.*%.conf"] = "hyprlang",
   },
 })
 
