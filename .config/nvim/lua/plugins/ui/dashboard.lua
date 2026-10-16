@@ -112,6 +112,12 @@ local function create_sections()
         desc = "Config",
         action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
       },
+      {
+        icon = " ",
+        key = "m",
+        desc = "Mason",
+        action = ":Mason",
+      },
     },
   }
 end
