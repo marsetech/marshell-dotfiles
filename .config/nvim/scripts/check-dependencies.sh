@@ -8,6 +8,7 @@ set -euo pipefail
 
 REQUIRED_COMMANDS=(
   git
+  gh
   tree-sitter
 )
 

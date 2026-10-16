@@ -10,6 +10,7 @@ vim.pack.add({
 local ui = require("plugins.ui")
 local navigation = require("plugins.navigation")
 local editor = require("plugins.editor")
+local development = require("plugins.development")
 
 -- ============================================================================
 -- Configuration
@@ -22,4 +23,6 @@ require("snacks").setup({
 
   bigfile = editor.bigfile_handler,
   scroll = editor.smooth_scrolling,
+
+  lazygit = development.git
 })
