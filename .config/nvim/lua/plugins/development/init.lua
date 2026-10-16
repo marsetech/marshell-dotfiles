@@ -10,5 +10,5 @@ require("plugins.development.todo-comments")
 -- Snacks-related plugins dependencies
 -- ============================================================================
 return {
-  git = require("plugins.development.github"),
+  git = require("plugins.development.git"),
 }
