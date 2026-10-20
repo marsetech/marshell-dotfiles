@@ -28,6 +28,7 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
+vim.opt.isfname:append("@-@")
 
 -- Clipboard
 vim.opt.clipboard:append("unnamedplus")
