@@ -482,6 +482,32 @@ set_hl("StatusLineNC", {
 })
 
 -- ============================================================================
+-- Suggestions / Snippets
+-- ============================================================================
+vim.api.nvim_set_hl(0, "BlinkCmpMenu", {
+  link = "NormalFloat",
+})
+
+vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", {
+  fg = colors.color2,
+  bg = "NONE",
+})
+
+vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", {
+  bg = colors.color0,
+  bold = true,
+})
+
+vim.api.nvim_set_hl(0, "BlinkCmpDoc", {
+  link = "NormalFloat",
+})
+
+vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", {
+  fg = colors.color2,
+  bg = "NONE",
+})
+
+-- ============================================================================
 -- Colorscheme
 -- ============================================================================
 
