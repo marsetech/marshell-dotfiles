@@ -32,30 +32,40 @@ require("blink.cmp").setup({
   },
 
   completion = {
+    menu = {
+      border = "rounded",
+      winblend = 0,
+      max_height = 8,
+      min_width = 36,
+      scrollbar = false,
+
+      draw = {
+        padding = 1,
+        gap = 1,
+
+        columns = {
+          { "kind_icon" },
+          { "label",    gap = 1 },
+          { "kind" },
+        },
+      },
+    },
+
     documentation = {
       auto_show = true,
-      auto_show_delay_ms = 500,
+      auto_show_delay_ms = 400,
+
+      window = {
+        border = "rounded",
+        winblend = 10,
+        max_width = 60,
+        max_height = 15,
+        scrollbar = false,
+      },
     },
 
-    menu = {
-      auto_show = true,
+    ghost_text = {
+      enabled = true,
     },
-  },
-
-  snippets = {
-    preset = "luasnip",
-  },
-
-  sources = {
-    default = {
-      "lsp",
-      "path",
-      "snippets",
-      "buffer",
-    },
-  },
-
-  fuzzy = {
-    implementation = "lua",
   },
 })
