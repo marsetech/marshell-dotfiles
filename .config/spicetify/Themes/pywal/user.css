@@ -653,7 +653,10 @@ form .main-topBar-searchBar:placeholder-shown {
   color: var(--spice-banner);
   line-height: 1.2;
   text-wrap: nowrap;
-  display: var(--display-spicetify-banner-ascii);
+  font-family: var(--font-family-header) !important;
+  font-size: calc(
+    var(--font-size) * calc(var(--font-size-multiplier-header) * 1.5)
+  ) !important;
 }
 .main-entityHeader-headerText::before {
   content: "";
