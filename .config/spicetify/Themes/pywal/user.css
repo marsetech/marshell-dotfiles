@@ -20,7 +20,8 @@
   --display-header-image: none;
   --display-sidebar-image: block;
   --display-tracklist-image: block;
-  --display-spicetify-banner-ascii: --display-music-banner-ascii: none;
+  --display-spicetify-banner-ascii: var(--display-music-banner-ascii);
+  --display-music-banner-ascii: none; /* none | block */
 
   --border-radius: 0px;
   --border-width: 1px;
@@ -32,7 +33,7 @@
   --global-nav-margin-top: 50px; /* Value: '0px' disable window controls */
 }
 
-/* ──── Fonts ─────────────────────────────── */
+/* font */
 *:not([style*="lyric" i] *, [class*="lyric" i], .main-entityHeader-title) {
   font-family: var(--font-family) !important;
   font-size: var(--font-size) !important;
@@ -58,12 +59,13 @@
   line-clamp: 2;
 }
 
-/* ──── Images ─────────────────────────────── */
+/* images */
 .main-card-imageContainer img,
 .view-homeShortcutsGrid-imageContainer img {
   display: var(--display-card-image) !important;
 }
-.main-coverSlotCollapsed-container {
+.main-coverSlotCollapsed-container,
+[data-testid="now-playing-bar"] [data-testid="cover-art-container"] {
   display: var(--display-coverart-image);
 }
 .main-entityHeader-imageContainer,
@@ -82,7 +84,7 @@
   display: var(--display-tracklist-image);
 }
 
-/* ──── Behaviour fixes ─────────────────────────────── */
+/* fix */
 .Root__globalNav {
   padding: 8px 16px !important;
   height: unset;
@@ -102,7 +104,7 @@
   border: var(--border-width) solid transparent;
 }
 .Root__nav-bar,
-.main-nowPlayingBar-container {
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"]) {
   overflow: visible;
 }
 .main-view-container {
@@ -168,7 +170,7 @@ div:has(> .main-entityHeader-container) {
   box-shadow: none;
 }
 
-/* ──── Fullscreen ─────────────────────────────── */
+/* fullscreen */
 .spotifyinternal-artistnpv .npv-what-is-playing .npv-cover-art,
 .spotifyinternal-artistnpv .npv-what-is-playing .npv-track {
   bottom: 18em;
@@ -181,7 +183,12 @@ div:has(> .main-entityHeader-container) {
   -webkit-transform: none;
   transform: none;
 }
-.npv-main-container .playback-bar {
+.npv-main-container
+  :is(
+    .playback-bar,
+    [data-testid="player-controls"]
+      > div:has(> [data-testid="playback-position"])
+  ) {
   position: unset;
   width: auto;
 }
@@ -189,7 +196,7 @@ div:has(> .main-entityHeader-container) {
   height: auto;
 }
 
-/* ──── Custom recolor ─────────────────────────────── */
+/* recolor */
 :root {
   --spice-main-elevated: var(--spice-main);
   --spice-highlight-elevated: var(--spice-main);
@@ -279,10 +286,13 @@ img[src*="equaliser"] {
   --mg-color: var(--background-tinted-base);
   --bg-color: var(--spice-button-disabled);
 }
-.playback-bar__progress-time-elapsed,
-.main-playbackBarRemainingTime-container {
+:is(.playback-bar__progress-time-elapsed, [data-testid="playback-position"]),
+:is(
+  .main-playbackBarRemainingTime-container,
+  [data-testid="playback-duration"]
+) {
   mix-blend-mode: difference;
-  color: var(--spice-button-active);
+  color: #fff;
 }
 .main-trackList-placeholder {
   background-color: var(--background-base);
@@ -335,11 +345,11 @@ img[src*="equaliser"] {
   background-color: var(--background-highlight) !important;
 }
 
-/* ──── Pane Borders ─────────────────────────────── */
+/* pane borders */
 .Root__globalNav,
 .main-yourLibraryX-entryPoints,
 .Root__main-view,
-.main-nowPlayingBar-container,
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"]),
 .Root__right-sidebar:has(aside:not(:empty)) {
   border: var(--border-width) var(--border-style);
   border-color: var(--spice-border-inactive);
@@ -350,13 +360,13 @@ img[src*="equaliser"] {
 .Root__globalNav:hover,
 .main-yourLibraryX-entryPoints:hover,
 .Root__main-view:hover,
-.main-nowPlayingBar-container:hover,
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"]):hover,
 .Root__right-sidebar:has(aside:not(:empty)):hover {
   border: var(--border-width) var(--border-style);
   border-color: var(--spice-border-active);
 }
 
-/* ──── Pane Headers ─────────────────────────────── */
+/* pane headers */
 .Root__nav-bar .main-yourLibraryX-entryPoints {
   overflow-x: visible !important;
 }
@@ -371,7 +381,7 @@ img[src*="equaliser"] {
     .main-yourLibraryX-libraryContainer
   )::before,
 .Root__main-view::before,
-.main-nowPlayingBar-container::before,
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])::before,
 .Root__right-sidebar:has(aside:not(:empty))::before {
   color: var(--spice-header);
   position: absolute;
@@ -406,7 +416,7 @@ img[src*="equaliser"] {
   content: "Main";
   position: fixed;
 }
-.main-nowPlayingBar-container::before {
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])::before {
   content: "Playing";
 }
 .Root__right-sidebar:has(aside:not(:empty))::before {
@@ -415,12 +425,15 @@ img[src*="equaliser"] {
 .Root__globalNav:hover::before,
 .Root__nav-bar .main-yourLibraryX-entryPoints:hover::before,
 .Root__main-view:hover::before,
-.main-nowPlayingBar-container:hover::before,
+:is(
+    .main-nowPlayingBar-container,
+    [data-testid="now-playing-bar"]
+  ):hover::before,
 .Root__right-sidebar:has(aside:not(:empty)):hover::before {
   color: var(--spice-border-active);
 }
 
-/* ──── Scrollbars ─────────────────────────────── */
+/* scrollbars */
 .os-scrollbar-handle {
   border-radius: var(--border-radius) !important;
   width: 2px !important;
@@ -437,7 +450,7 @@ img[src*="equaliser"] {
   right: 5px !important;
 }
 
-/* ──── Context Menus + Tippy Boxes ─────────────────────────────── */
+/* context menus + tippy boxes */
 .main-contextMenu-menu,
 .tippy-box,
 #context-menu > ul,
@@ -449,8 +462,7 @@ img[src*="equaliser"] {
 .main-contextMenu-menu:not(:first-child) {
   border-top: 0 !important;
 }
-
-/* ──── Modals behaviour ─────────────────────────────── */
+/* modals */
 .GenericModal,
 .GenericModal__overlay > div,
 dialog,
@@ -476,7 +488,7 @@ dialog::backdrop {
   background-color: rgba(var(--spice-rgb-main), 80%) !important;
 }
 
-/* ──── Inputs ─────────────────────────────── */
+/* inputs */
 button,
 .x-toggle-indicatorWrapper,
 select {
@@ -494,8 +506,11 @@ select:focus {
   border: 1px solid var(--essential-base) !important;
 }
 
-/*  ==== GLOBAL NAVBAR SETTINGS =========================================================== */
-/* ──── Spacing ─────────────────────────────── */
+/*  ================================
+    GLOBAL NAV
+    ================================ */
+
+/* fix spacing */
 .main-globalNav-historyButtonsContainer > div {
   gap: 0;
   -webkit-padding-start: 0;
@@ -523,13 +538,13 @@ select:focus {
   padding-inline: var(--encore-spacing-tighter, 12px);
 }
 
-/* ──── Icons ─────────────────────────────── */
+/* icons */
 .main-globalNav-historyButtonsContainer svg[class*="icon"],
 .main-globalNav-searchContainer svg {
   transform: scale(0.7);
 }
 
-/* ──── Search Section ─────────────────────────────── */
+/* search section */
 .main-globalNav-searchSection,
 .main-globalNav-searchContainer {
   align-items: center;
@@ -585,8 +600,11 @@ form .main-topBar-searchBar:placeholder-shown {
   transition: none !important;
 }
 
-/*  ==== LEFT SIDEBAR SETTINGS =========================================================== */
-/* ──── Pages Pane ─────────────────────────────── */
+/*  ================================
+    LEFT SIDEBAR
+    ================================ */
+
+/* pages pane */
 .main-yourLibraryX-navLink {
   height: 24px;
   gap: 8px;
@@ -597,7 +615,7 @@ form .main-topBar-searchBar:placeholder-shown {
   transform: scale(0.7);
 }
 
-/* ──── Library Pane + Tracklist ─────────────────────────────── */
+/* library pane, tracklist */
 .x-entityImage-imageContainer,
 .main-trackList-rowImage {
   transform: scale(0.7);
@@ -618,14 +636,16 @@ form .main-topBar-searchBar:placeholder-shown {
   box-shadow: none !important;
 }
 
-/* ──── Sidebar ─────────────────────────────── */
+/* sidebar config */
 .main-yourLibraryX-entryPoints:first-child:has(
     .main-yourLibraryX-navItems:empty
   ) {
   display: none;
 }
 
-/*  ==== MAIN VIEW SETTINGS =========================================================== */
+/*  ================================
+    MAIN VIEW
+    ================================ */
 .view-homeShortcutsGrid-shortcuts::before {
   content: "SpotifyTUI";
   white-space: pre-wrap;
@@ -648,11 +668,11 @@ form .main-topBar-searchBar:placeholder-shown {
   display: var(--display-music-banner-ascii);
 }
 
-/* ──── Top Bar ─────────────────────────────── */
+/* top bar */
 .marketplace-tabBar-active {
   text-decoration: underline !important;
 }
-.search-searchCategory-catergoryGrid *,
+.search-searchCategory-categoryGrid *,
 .main-shelf-subHeader *,
 [class*="chip" i] {
   border-radius: var(--border-radius);
@@ -671,7 +691,7 @@ form .main-topBar-searchBar:placeholder-shown {
   margin-right: var(--content-spacing);
 }
 
-/* ──── Headers ─────────────────────────────── */
+/* headers */
 .main-entityHeader-container {
   padding: var(--content-spacing) 0;
 }
@@ -684,7 +704,7 @@ form .main-topBar-searchBar:placeholder-shown {
   );
 }
 
-/* ──── Lyrics Page ─────────────────────────────── */
+/* lyrics page & sidebar */
 .lyrics-lyrics-background {
   background-color: var(--spice-main);
 }
@@ -727,7 +747,7 @@ form .main-topBar-searchBar:placeholder-shown {
   white-space: break-spaces;
 }
 
-/* ──── Lyrics (Cinema) ─────────────────────────────── */
+/* lyrics cinema */
 .Root__lyrics-cinema {
   border: var(--border-width) var(--border-style) transparent;
   overflow: hidden;
@@ -737,12 +757,30 @@ form .main-topBar-searchBar:placeholder-shown {
   mask-image: none !important;
 }
 
-/*  ==== PLAYBACK BAR SETTINGS =========================================================== */
-.main-nowPlayingBar-nowPlayingBar {
+/*  ================================
+    PLAYBACK BAR
+    ================================ */
+
+/* playback bar itself */
+[data-testid="now-playing-bar"] {
+  position: relative;
+}
+/* Inline-size containment would anchor the seek row to the narrow center column. */
+[data-testid="now-playing-bar"] [data-testid="player-controls"] {
+  container-type: normal;
+}
+:is(
+  .main-nowPlayingBar-nowPlayingBar,
+  [data-testid="now-playing-bar"] > div:has([data-testid="player-controls"])
+) {
+  box-sizing: border-box;
   padding: 8px 8px 32px 8px;
   height: 96px;
 }
-.playback-bar {
+:is(
+  .playback-bar,
+  [data-testid="player-controls"] > div:has(> [data-testid="playback-position"])
+) {
   position: absolute;
   left: calc(var(--panel-gap) + 8px);
   bottom: calc(var(--panel-gap) + 8px);
@@ -750,64 +788,112 @@ form .main-topBar-searchBar:placeholder-shown {
   justify-content: center;
 }
 
-/* ──── Time Indicators ─────────────────────────────── */
-.playback-bar__progress-time-elapsed {
-  pointer-events: none;
-  width: unset;
-  display: none !important;
-}
-.playback-bar__progress-time-elapsed::after {
-  content: " ・";
-}
-.playback-bar__progress-time-elapsed,
-.main-playbackBarRemainingTime-container {
-  z-index: 9;
-  padding-top: 2px;
-  display: none !important;
+/* The DWP player exposes its panel as a positioning anchor. */
+[data-testid="now-playing-bar"]
+  [data-testid="player-controls"]
+  > div:has(> [data-testid="playback-position"]) {
+  inset: auto 8px 8px;
+  width: auto;
+  height: 18px;
 }
 
-/* ──── Seek Bar ─────────────────────────────── */
-.main-nowPlayingBar-container .playback-bar {
+/* playback time indicators */
+:is(.playback-bar__progress-time-elapsed, [data-testid="playback-position"])
+  > span,
+:is(.main-playbackBarRemainingTime-container, [data-testid="playback-duration"])
+  > span {
+  position: static !important;
+  inset: auto !important;
+  contain: none !important;
+}
+:is(
+  .playback-bar__progress-time-elapsed,
+  [data-testid="playback-position"]
+)::after {
+  content: " /";
+}
+:is(.playback-bar__progress-time-elapsed, [data-testid="playback-position"]),
+:is(
+  .main-playbackBarRemainingTime-container,
+  [data-testid="playback-duration"]
+) {
+  z-index: 9;
+  height: unset;
+  width: unset;
+  flex-shrink: 0;
+  pointer-events: none;
+  padding-top: 2px;
+}
+
+/* playback seek bar */
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])
+  :is(
+    .playback-bar,
+    [data-testid="player-controls"]
+      > div:has(> [data-testid="playback-position"])
+  ) {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
   justify-content: center !important;
 }
-.main-nowPlayingBar-container
-  .playback-bar
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])
+  :is(
+    .playback-bar,
+    [data-testid="player-controls"]
+      > div:has(> [data-testid="playback-position"])
+  )
   > div:has(> [data-testid="playback-progressbar"]) {
   position: absolute !important;
   width: 100% !important;
-  height: 10px !important;
+  height: 16px !important;
   left: 0 !important;
   top: 50% !important;
-  transform: translateY(-125%) !important;
+  transform: translateY(-50%) !important;
 }
-.main-nowPlayingBar-container .playback-bar [data-testid="progress-bar"] {
-  --progress-bar-height: 8px !important;
-  --progress-bar-radius: 35px !important;
-  /*--progress-bar-radius: calc(var(--border-radius) / 3) !important;*/
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])
+  :is(
+    .playback-bar,
+    [data-testid="player-controls"]
+      > div:has(> [data-testid="playback-position"])
+  )
+  [data-testid="progress-bar"] {
+  --progress-bar-height: 16px !important;
+  --progress-bar-radius: calc(var(--border-radius) / 2) !important;
 }
-.main-nowPlayingBar-container .playback-bar .progress-bar__slider,
-.main-nowPlayingBar-container
-  .playback-bar
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])
+  :is(
+    .playback-bar,
+    [data-testid="player-controls"]
+      > div:has(> [data-testid="playback-position"])
+  )
+  .progress-bar__slider,
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])
+  :is(
+    .playback-bar,
+    [data-testid="player-controls"]
+      > div:has(> [data-testid="playback-position"])
+  )
   [data-testid="progress-bar-handle"] {
   box-shadow: none !important;
   height: 100% !important;
-  border-radius: 20px !important;
+  border-radius: 0 !important;
   background-color: var(--spice-text) !important;
+  top: 0 !important;
+  transform: none !important;
 }
 .x-progressBar-fillColor {
   transition-duration: unset;
 }
 
-/* ──── Cover Art ─────────────────────────────── */
-.main-nowPlayingWidget-coverArt .cover-art {
+/* cover art */
+.main-nowPlayingWidget-coverArt .cover-art,
+[data-testid="now-playing-bar"] [data-testid="cover-art-container"] img {
   height: 32px !important;
   width: 32px !important;
 }
 
-/* ──── Left Nowplaying Text ─────────────────────────────── */
+/* left nowplaying text */
 .main-nowPlayingBar-left {
   padding-inline-start: 0;
 }
@@ -815,46 +901,51 @@ form .main-topBar-searchBar:placeholder-shown {
   margin: 0;
 }
 
-/* ──── Volume Bar ─────────────────────────────── */
-.main-nowPlayingBar-container
-  .main-nowPlayingBar-right
+/* volume bar */
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])
+  :is(.main-nowPlayingBar-right, [data-testid="volume-bar"])
   [data-testid="progress-bar"] {
-  --progress-bar-height: calc(var(--font-size) / 3) !important;
+  --progress-bar-height: calc(var(--font-size) / 6) !important;
 }
-.main-nowPlayingBar-container .main-nowPlayingBar-right .progress-bar__slider,
-.main-nowPlayingBar-container
-  .main-nowPlayingBar-right
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])
+  :is(.main-nowPlayingBar-right, [data-testid="volume-bar"])
+  .progress-bar__slider,
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])
+  :is(.main-nowPlayingBar-right, [data-testid="volume-bar"])
   [data-testid="progress-bar-handle"] {
-  height: 8px !important;
+  height: 16px !important;
   box-shadow: none !important;
-  border-radius: 35px !important;
+  border-radius: 0 !important;
   background-color: var(--spice-text) !important;
 }
-.main-nowPlayingBar-container
-  .main-nowPlayingBar-right
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])
+  :is(.main-nowPlayingBar-right, [data-testid="volume-bar"])
   .x-progressBar-progressBarBg,
-.main-nowPlayingBar-container
-  .main-nowPlayingBar-right
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])
+  :is(.main-nowPlayingBar-right, [data-testid="volume-bar"])
   [data-testid="progress-bar-background"] {
   background-color: transparent !important;
+  border-bottom: var(--progress-bar-height) dashed
+    rgba(var(--spice-rgb-subtext), 0.3) !important;
 }
-.main-nowPlayingBar-container
-  .main-nowPlayingBar-right
+:is(.main-nowPlayingBar-container, [data-testid="now-playing-bar"])
+  :is(.main-nowPlayingBar-right, [data-testid="volume-bar"])
   .x-progressBar-fillColor {
   background-color: var(--spice-main) !important;
-  border-bottom: var(--progress-bar-height) solid var(--fg-color) !important;
+  border-bottom: var(--progress-bar-height) dashed var(--fg-color) !important;
 }
 
-/* ──── Player Controls ─────────────────────────────── */
-.player-controls__buttons {
+/* player controls */
+:is(.player-controls__buttons, [data-testid="general-controls"]) {
   margin-bottom: 0;
+  align-items: center;
 }
-.player-controls__buttons,
+:is(.player-controls__buttons, [data-testid="general-controls"]),
 .main-nowPlayingBar-extraControls {
   opacity: 0.25;
   transition: opacity var(--border-transition);
 }
-.player-controls__buttons:hover,
+:is(.player-controls__buttons, [data-testid="general-controls"]):hover,
 .main-nowPlayingBar-extraControls:hover {
   opacity: 1;
 }
@@ -954,8 +1045,7 @@ button[data-testid="control-button-seek-forward-15"] > span:first-child::after {
   content: "+15s";
   white-space: nowrap;
 }
-
-/* ──── Podcast Controls ─────────────────────────────── */
+/* podcast controls */
 button[data-testid="control-button-playback-speed"] > span.hidden-visually {
   width: auto !important;
   height: auto !important;
@@ -976,14 +1066,19 @@ button[data-testid="control-button-npv-episodes"] > span::after {
 .main-playPauseButton-button > svg,
 .main-skipForwardButton-button > svg,
 .main-repeatButton-button > svg,
-:is(.player-controls__buttons, .npv-nowPlayingBar-controls) svg,
+:is(
+    .player-controls__buttons,
+    [data-testid="general-controls"],
+    .npv-nowPlayingBar-controls
+  )
+  svg,
 button[data-testid="control-button-playback-speed"] svg,
 button[data-testid="control-button-sleep-timer"] svg,
 button[data-testid="control-button-npv-episodes"] svg {
   display: none !important;
 }
 
-/* ──── Connect Device Bar ─────────────────────────────── */
+/* connect bar */
 .main-connectBar-connectBar {
   position: absolute;
   background-color: transparent !important;
@@ -1248,4 +1343,74 @@ svg[data-encore-id="icon"]:has(path[d^="M4.99 3h2.993"]) {
 /*Download Button*/
 svg:has(path[d*="L12 18.364"]) {
   display: none !important;
+}
+
+/* ==== CUSTOM USER OVERRIDES ============================================================ */
+/* ──── Dreary Playback Bar ───────────────────── */
+
+.main-nowPlayingBar-nowPlayingBar {
+  position: relative !important;
+}
+
+/* Playback progress bar */
+.playback-bar {
+  position: absolute !important;
+  bottom: 100% !important;
+  left: -1px !important;
+  width: 100% !important;
+  z-index: 10 !important;
+}
+
+.progress-bar__bg,
+.progress-bar__fg_wrapper {
+  border-radius: 0 !important;
+  z-index: 1;
+}
+
+.playback-bar__progress-time {
+  display: none !important;
+}
+
+/* Player controls */
+.player-controls__buttons {
+  transform: translateY(6px);
+  align-items: center;
+  position: relative;
+  left: 2.3%;
+  opacity: 1;
+}
+
+/* Play / Pause button */
+.main-playPauseButton-button {
+  --button-size: 50px !important;
+  background-color: var(--spice-player) !important;
+  color: var(--spice-text) !important;
+  box-shadow: var(--spice-shadow) 0 5px 9px 0 !important;
+  cursor: pointer;
+}
+
+.main-playPauseButton-button:hover {
+  color: var(--spice-text) !important;
+  transform: none !important;
+}
+
+/* Remaining time */
+.main-playbackBarRemainingTime-container {
+  position: absolute;
+  left: 49.68%;
+  top: 60%;
+  border: solid 1px;
+  border-radius: 20px;
+  z-index: 5;
+  color: var(--spice-subtext) !important;
+  padding-left: 5px;
+}
+
+/* Volume and extra controls */
+.main-nowPlayingBar-extraControls {
+  opacity: 1 !important;
+}
+
+.main-nowPlayingBar-extraControls:hover {
+  opacity: 1 !important;
 }
