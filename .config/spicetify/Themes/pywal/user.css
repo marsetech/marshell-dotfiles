@@ -20,7 +20,7 @@
   --display-header-image: none;
   --display-sidebar-image: block;
   --display-tracklist-image: block;
-  --display-spicetify-banner-ascii: --display-music-banner-ascii: none;
+  --display-spicetify-banner-ascii: var(--display-music-banner-ascii);
   --display-music-banner-ascii: none; /* none | block */
 
   --border-radius: 0px;
